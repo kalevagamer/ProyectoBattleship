@@ -1,141 +1,97 @@
-import os
+import random
+from juegobatallanaval import JuegoBatallaNaval
 from jugador import Jugador
+import os
 
-class JuegoBatallaNaval:
-    def __init__(self):
-        self.filas = 20
-        self.columnas = 20
-        self.tablero_jugador1 = [['-' for _ in range(self.columnas)] for _ in range(self.filas)]
-        self.tablero_jugador2 = [['-' for _ in range(self.columnas)] for _ in range(self.filas)]
-        self.tablero_jugador1_objetivo = [['-' for _ in range(self.columnas)] for _ in range(self.filas)]
-        self.tablero_jugador2_objetivo = [['-' for _ in range(self.columnas)] for _ in range(self.filas)]
-        self.barcos = {'Destructor': 6, 'Crucero': 4, 'Acorazado': 2}
-        self.barcos_jugador1 = self.colocar_barcos(self.tablero_jugador1)
-        self.barcos_jugador2 = self.colocar_barcos(self.tablero_jugador2)
-        self.turno = 1
-        self.juego_terminado = False
-        self.jugadores = []
+def colocar_barcos(self, tablero):
+        barcos_colocados = {}
+        for barco, tamaño in self.barcos.items():
+            orientación = random.choice(['horizontal', 'vertical'])
+            if orientación == 'horizontal':
+                fila = random.randint(0, self.filas - 1)
+                columna = random.randint(0, self.columnas - tamaño)
+                for c in range(columna, columna + tamaño):
+                    tablero[fila][c] = barco[0]
+            else:  # orientación == 'vertical'
+                fila = random.randint(0, self.filas - tamaño)
+                columna = random.randint(0, self.columnas - 1)
+                for f in range(fila, fila + tamaño):
+                    tablero[f][columna] = barco[0]
+            barcos_colocados[barco] = (fila, columna, orientación)
+        return barcos_colocados
 
-    def colocar_barcos(self, tablero):
-        # Lógica para colocar aleatoriamente los barcos en el tablero
-        pass
+def mostrar_lista_jugadores(juego):
+    if not juego.jugadores:
+        print("No hay jugadores registrados.")
+    else:
+        print("Lista de jugadores:")
+        for i, jugador in enumerate(juego.jugadores, 1):
+            print(f"{i}. Nombre: {jugador.nombre}, Nickname: {jugador.nickname}")
 
-    def guardar_juego(self, nombre_archivo):
-        # Lógica para guardar el estado actual del juego en un archivo
-        pass
-
-    def cargar_juego(self, nombre_archivo):
-        # Lógica para cargar un juego guardado previamente desde un archivo
-        pass
-
-    def atacar(self, jugador, fila, columna):
-        # Lógica para manejar los ataques de los jugadores y actualizar los tableros en consecuencia
-        pass
-
-    def verificar_ganador(self):
-        # Lógica para verificar si algún jugador ha ganado el juego
-        pass
-
-    def imprimir_tablero(self, tablero):
-        print("   ", end="")
-        for i in range(self.columnas):
-            print(f"{i:2}", end=" ")
-        print()
-        for i in range(self.filas):
-            print(f"{i:2}", end=" ")
-            for j in range(self.columnas):
-                print(tablero[i][j], end=" ")
-            print()
-
-    def mostrar_lista_jugadores(self):
-        if not self.jugadores:
-            print("No hay jugadores registrados.")
-        else:
-            print("Lista de jugadores:")
-            for i, jugador in enumerate(self.jugadores, 1):
-                print(f"{i}. Nombre: {jugador.nombre}, Nickname: {jugador.nickname}")
-
-    def empezar_juego(self):
-        if len(self.jugadores) < 2:
-            print("Debes tener al menos dos jugadores para empezar el juego.")
-            return
+def empezar_juego(juego):
+    if len(juego.jugadores) < 2:
+        print("Debes tener al menos dos jugadores para empezar el juego.")
+    else:
         print("El juego ha comenzado.")
 
-    def agregar_jugador(self):
-        nombre = input("Ingrese el nombre del jugador: ")
-        nickname = input("Ingrese el nickname del jugador: ")
-        self.jugadores.append(Jugador(nombre, nickname))
-        print(f"El jugador {nombre} ha sido agregado correctamente.")
+def agregar_jugador(juego):
+    nombre = input("Ingrese el nombre del jugador: ")
+    nickname = input("Ingrese el nickname del jugador: ")
+    juego.jugadores.append(Jugador(nombre, nickname))
+    print(f"El jugador {nombre} ha sido agregado correctamente.")
 
-    def editar_jugador(self):
-        if not self.jugadores:
-            print("No hay jugadores para editar.")
+def editar_jugador(juego):
+    if not juego.jugadores:
+        print("No hay jugadores para editar.")
+        return
+    nombre = input("Ingrese el nombre del jugador que desea editar: ")
+    for jugador in juego.jugadores:
+        if jugador.nombre == nombre:
+            nuevo_nombre = input("Ingrese el nuevo nombre del jugador: ")
+            nuevo_nickname = input("Ingrese el nuevo nickname del jugador: ")
+            jugador.nombre = nuevo_nombre
+            jugador.nickname = nuevo_nickname
+            print(f"El jugador {nombre} ha sido editado correctamente.")
             return
-        nombre = input("Ingrese el nombre del jugador que desea editar: ")
-        for jugador in self.jugadores:
-            if jugador.nombre == nombre:
-                nuevo_nombre = input("Ingrese el nuevo nombre del jugador: ")
-                nuevo_nickname = input("Ingrese el nuevo nickname del jugador: ")
-                jugador.nombre = nuevo_nombre
-                jugador.nickname = nuevo_nickname
-                print(f"El jugador {nombre} ha sido editado correctamente.")
-                return
-        print(f"No se encontró un jugador con el nombre {nombre}.")
+    print(f"No se encontró un jugador con el nombre {nombre}.")
 
-    def eliminar_jugador(self):
-        if not self.jugadores:
-            print("No hay jugadores para eliminar.")
-            return
-        nombre = input("Ingrese el nombre del jugador que desea eliminar: ")
-        for jugador in self.jugadores:
-            if jugador.nombre == nombre:
-                self.jugadores.remove(jugador)
-                print(f"El jugador {nombre} ha sido eliminado correctamente.")
-                return
-        print(f"No se encontró un jugador con el nombre {nombre}.")
+def salir_del_juego(juego):
+    juego.juego_terminado = True
 
-    def salir_del_juego(self):
-        self.juego_terminado = True
+def mostrar_menu():
+    print("\n--- BattleShip ---")
+    print("1. Empezar juego")
+    print("2. Agregar jugador")
+    print("3. Editar jugador")
+    print("4. Mostrar lista de jugadores")
+    print("5. Salir del juego")
 
-    def mostrar_menu(self):
-        print("\n--- BattleShip ---")
-        print(" ")
-        print("1. Empezar juego")
-        print("2. Agregar jugador")
-        print("3. Editar jugador")
-        print("4. Eliminar jugador")
-        print("5. Mostrar lista de jugadores")
-        print("6. Salir del juego")
+def ejecutar_opcion(juego, opcion):
+    if opcion == 1:
+        empezar_juego(juego)
+    elif opcion == 2:
+        agregar_jugador(juego)
+    elif opcion == 3:
+        editar_jugador(juego)
+    elif opcion == 4:
+        mostrar_lista_jugadores(juego)
+    elif opcion == 5:
+        print("Saliendo del Juego...")
+        salir_del_juego(juego)
+    else:
+        print("Opción no válida. Presione enter para continuar")
 
-    def ejecutar_opcion(self, opcion):
-        if opcion == 1:
-            print('\033[2J') # Código ANSI para limpiar la pantalla en sistemas Windows
-            self.empezar_juego()
-        elif opcion == 2:
-            print('\033[2J') # Código ANSI para limpiar la pantalla en sistemas Windows
-            self.agregar_jugador()
-        elif opcion == 3:
-            print('\033[2J') # Código ANSI para limpiar la pantalla en sistemas Windows
-            self.editar_jugador()
-        elif opcion == 4:
-            print('\033[2J') # Código ANSI para limpiar la pantalla en sistemas Windows
-            self.eliminar_jugador()
-        elif opcion == 5:
-            print('\033[2J') # Código ANSI para limpiar la pantalla en sistemas Windows
-            self.mostrar_lista_jugadores()
-        elif opcion == 6:
-            print('\033[2J') # Código ANSI para limpiar la pantalla en sistemas Windows
-            print("Saliendo del Juego......")
-            self.salir_del_juego()
-        else:
-            print("Opción no válida.....presione enter para continuar")
+def jugar():
+    juego = JuegoBatallaNaval()
+    while not juego.juego_terminado:
+        mostrar_menu()
+        try:
+            opcion = int(input("Seleccione una opción: "))
+            ejecutar_opcion(juego, opcion)
+        except ValueError:
+            print("Error: Ingrese un número válido.")
 
-    def jugar(self):
-        while not self.juego_terminado:
-            self.mostrar_menu()
-            opcion = int(input("Seleccione una opcion: "))
-            self.ejecutar_opcion(opcion)
+# Ejecutar el juego
+if __name__ == "__main__":
+    jugar()
 
-# Instanciamos y ejecutamos el juego
-juego = JuegoBatallaNaval()
-juego.jugar()
