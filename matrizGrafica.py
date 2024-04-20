@@ -17,7 +17,6 @@ def tablero (x:int,y:int)->tk.Tk:
   resolucion=f"{x*50}x{y*50}+0+0"
   print (resolucion)
   juego.geometry(resolucion)
-
   matriz_botones=[[tk.Button(juego, command=lambda x=c,y=f:accion(x,y)) 
                    for c in range(x)] for f in range(y)]
   posx=0
