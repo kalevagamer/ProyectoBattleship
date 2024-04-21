@@ -2,7 +2,11 @@ from tkinter import *
 from PIL import Image,ImageTk
 import crearMatriz
 
+matriz=[]
+matrizBotones=[]
 
+def iniciarPartida():
+    crearMatriz.tamano(matriz)
 
 def main():
     vMenu=Tk()
@@ -18,7 +22,7 @@ def main():
     lbl.place(x=-1,y=0)
 
     #botones
-    btnNuevaPartida=Button(vMenu,text="Nueva Partida", command=lambda:crearMatriz)
+    btnNuevaPartida=Button(vMenu,text="Nueva Partida", command=lambda:iniciarPartida())
     btnNuevaPartida.place(x=650-btnNuevaPartida.winfo_reqwidth()//2,y=350-btnNuevaPartida.winfo_reqheight()//2)
 
     btnReanudarPartida=Button(vMenu,text="Reanudar Partida")
@@ -31,4 +35,6 @@ def main():
 
 
 
-main()    
+main()
+for e in matriz:
+    print(e)    
