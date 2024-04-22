@@ -1,25 +1,29 @@
 from tkinter import *
 from PIL import Image,ImageTk
 import crearMatriz
+import jugador
 
 matriz=[]
+lstJugadores=[]
 matrizBotones=[]
 
 def iniciarPartida():
-    crearMatriz.tamano(matriz)
+    jugador.ObternerNombres()
+    crearMatriz.obtenerTamano(matriz)
 
 def main():
     vMenu=Tk()
     vMenu.title("Battleship")
     vMenu.iconbitmap("img/bt.ico")
     vMenu.geometry("1300x700")
+    vMenu.resizable(False,False)
 
     #lables
-    img=Image.open("img/battle.jpg")
+    img=Image.open("img/battle.jpeg")
     img= img.resize((1300,700))
     fondo=ImageTk.PhotoImage(img)
     lbl=Label(vMenu, image=fondo)
-    lbl.place(x=-1,y=0)
+    lbl.place(x=-10,y=0)
 
     #botones
     btnNuevaPartida=Button(vMenu,text="Nueva Partida", command=lambda:iniciarPartida())

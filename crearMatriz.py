@@ -36,7 +36,7 @@ def proceso(largo,ancho,mtrz,ven):
             ven.destroy()
     
 
-def tamano(mtrz):
+def obtenerTamano(mtrz):
     ven=Tk()
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
