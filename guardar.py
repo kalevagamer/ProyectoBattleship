@@ -2,16 +2,23 @@ from tkinter import *
 from tkinter import messagebox
 
 def escribirDatos(archivo,mtrz,lstJ):
-    if archivo.strip()=="":
+    archivo=f"{str(archivo).strip()}.txt"
+    lstJStr=[]
+    mtrzStr=[]
+    if archivo=="":
         messagebox.showerror("Error","No puedes guardar un archivo sin nombre")
     else:
-        with open(archivo.strip(), "w") as file:
-            file.write("%s\n" % lstJ)
-            for e in mtrz:
-                file.write("%s\n" % e)
-
-def guardarPartida(matriz,lstJugadores):
-    ven=Tk()
+        for e in lstJ:
+            lstJStr.append(str(e)+"\n")
+        for e in mtrz:
+            mtrzStr.append(str(e)+"\n")
+        with open(archivo, "w") as file:
+            file.writelines(lstJStr)
+            file.writelines(mtrzStr)
+        messagebox.showinfo("Guardado","La partida se ha guardado satisfactoriamente")
+            
+def guardarPartida(vMenu,matriz,lstJugadores):
+    ven=Toplevel(vMenu)
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
     ven.geometry("300x200")
@@ -24,7 +31,7 @@ def guardarPartida(matriz,lstJugadores):
     
     #entrys
     ntrPartida=Entry(ven,background="lightblue")
-    ntrPartida.insert(0,10)
+    ntrPartida.insert(0,"archivo")
    
     ntrPartida.place(x=155-ntrPartida.winfo_reqwidth()//2,y=30)
 
@@ -32,5 +39,3 @@ def guardarPartida(matriz,lstJugadores):
     #botones
     btnConfirmar=Button(ven,text="Confirmar",command=lambda:escribirDatos(ntrPartida.get(),matriz,lstJugadores))
     btnConfirmar.place(x=155-btnConfirmar.winfo_reqwidth()//2,y=120)
-
-    ven.mainloop()

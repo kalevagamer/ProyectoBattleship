@@ -17,5 +17,5 @@ def limpiarVentana(ven):
     for e in ven.winfo_children():
         e.destroy()
 
-def matrizGrafica(mtrz):
+def matrizGrafica(vMenu,matriz,lstJugadores):
     pass

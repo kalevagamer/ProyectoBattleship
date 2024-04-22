@@ -8,14 +8,15 @@ import reanudar
 matriz=[]
 lstJugadores=[]
 
-def cargarDatos():
-    reanudar.reanudarPartida(matriz,lstJugadores)
-    
+def cargarDatos(vMenu):
+    reanudar.reanudarPartida(vMenu,matriz,lstJugadores)
+
 def iniciarPartida(vMenu):
-    jugador.ObternerNombres(lstJugadores)
-    crearMatriz.obtenerTamano(matriz)
-    juego.matrizGrafica(matriz,lstJugadores)
-    main()
+    aux=jugador.obternerNombres(vMenu,lstJugadores)
+    vMenu.wait_window(aux)
+    aux=crearMatriz.obtenerTamano(vMenu,matriz)
+    vMenu.wait_window(aux)
+    juego.matrizGrafica(vMenu,matriz,lstJugadores)
 
 
 def main():
@@ -36,7 +37,7 @@ def main():
     btnNuevaPartida=Button(vMenu,text="Nueva Partida", command=lambda:iniciarPartida(vMenu))
     btnNuevaPartida.place(x=650-btnNuevaPartida.winfo_reqwidth()//2,y=350-btnNuevaPartida.winfo_reqheight()//2)
 
-    btnReanudarPartida=Button(vMenu,text="Reanudar Partida",command=lambda:cargarDatos())
+    btnReanudarPartida=Button(vMenu,text="Reanudar Partida",command=lambda:cargarDatos(vMenu))
     btnReanudarPartida.place(x=650-btnReanudarPartida.winfo_reqwidth()//2,y=390-btnReanudarPartida.winfo_reqheight()//2)
 
     btnSalir=Button(vMenu,text="Salir",command=lambda:vMenu.destroy())

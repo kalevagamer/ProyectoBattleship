@@ -36,8 +36,8 @@ def proceso(largo,ancho,mtrz,ven):
             ven.destroy()
     
 
-def obtenerTamano(mtrz):
-    ven=Tk()
+def obtenerTamano(vMenu,mtrz):
+    ven=Toplevel(vMenu)
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
     ven.geometry("300x200")
@@ -64,6 +64,9 @@ def obtenerTamano(mtrz):
     btnConfirmar=Button(ven,text="Confirmar",command=lambda:proceso(ntrAncho.get(),ntrLargo.get(),mtrz,ven))
     btnConfirmar.place(x=155-btnConfirmar.winfo_reqwidth()//2,y=120)
 
+    return ven
 
-    ven.mainloop()
+
+
+
 
