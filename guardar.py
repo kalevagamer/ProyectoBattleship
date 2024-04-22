@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 
 def escribirDatos(archivo,mtrz,lstJ):
-    archivo=f"{str(archivo).strip()}.txt"
+    archivo=f"saves/{str(archivo).strip()}.txt"
     lstJStr=[]
     mtrzStr=[]
     if archivo=="":

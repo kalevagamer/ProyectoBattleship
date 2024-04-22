@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-def validarNumeros(n):
+def validarNumeros(n,ven):
     try:
         n=int(n)
         if n>=10:
@@ -9,10 +9,12 @@ def validarNumeros(n):
                 return True
             else:
                 messagebox.showerror("Error",f"{n} no es entero")
+                ven.focus()
                 return False
         messagebox.showwarning("Alerta",f"{n} a sido cambiado por el minimo (10)")
     except: 
         messagebox.showerror("Error",f"{n} No es un numero")
+        ven.focus()
         return False 
 
 
@@ -30,14 +32,17 @@ def crearMatriz(largo,ancho,mtrz):
         mtrz.append(anchoMatriz)
 
 def proceso(largo,ancho,mtrz,ven):
-    if validarNumeros(largo):
-        if validarNumeros(ancho):
+    if validarNumeros(largo,ven):
+        if validarNumeros(ancho,ven):
             crearMatriz(largo,ancho,mtrz)
             ven.destroy()
-    
 
-def obtenerTamano(vMenu,mtrz):
-    ven=Toplevel(vMenu)
+def noCerrar():
+    pass
+
+def obtenerTamano(vtnMenu,mtrz):
+    ven=Toplevel(vtnMenu)
+    ven.protocol("WM_DELETE_WINDOW", noCerrar)
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
     ven.geometry("300x200")

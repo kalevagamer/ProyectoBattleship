@@ -28,7 +28,6 @@ def tablero (x:int,y:int)->tk.Tk:
       btn.configure(height=50, width=50)
       posx+=50 
     posy+=50
-  print (matriz_botones)
 
   return juego 
 

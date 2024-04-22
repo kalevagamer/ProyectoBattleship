@@ -9,14 +9,19 @@ def agregarJugadores(ven,lst,N1,N2,NN1,NN2):
         ven.destroy()
     else:
         messagebox.showerror("Error","Alguna de las celdas esta vacia")
+        ven.focus_force()
 
+def noCerrar():
+    pass
 
-def obternerNombres(vMenu,lstJugadores):
-    vent=Toplevel(vMenu)
+def obternerNombres(vtnMenu,lstJugadores):
+    vent=Toplevel(vtnMenu)
+    vent.protocol("WM_DELETE_WINDOW", noCerrar)
     vent.title("Battelship")
     vent.iconbitmap("img/bt.ico")
     vent.geometry("300x200")
     vent.configure(background="lightblue")
+    
     vent.focus()
     #labels
     lblN1=Label(vent,text="Nombre Jugador 1",background="lightblue")

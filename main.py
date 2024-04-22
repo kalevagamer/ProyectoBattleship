@@ -8,42 +8,51 @@ import reanudar
 matriz=[]
 lstJugadores=[]
 
-def cargarDatos(vMenu):
-    reanudar.reanudarPartida(vMenu,matriz,lstJugadores)
+def bloquearVetana(vtn):
+    vtn.attributes("-disabled", True)
 
-def iniciarPartida(vMenu):
-    aux=jugador.obternerNombres(vMenu,lstJugadores)
-    vMenu.wait_window(aux)
-    aux=crearMatriz.obtenerTamano(vMenu,matriz)
-    vMenu.wait_window(aux)
-    juego.matrizGrafica(vMenu,matriz,lstJugadores)
+def desBloquearVentana(vtn):
+    vtn.attributes("-disabled", False)
+
+def cargarDatos(vtnMenu):
+    reanudar.reanudarPartida(vtnMenu,matriz,lstJugadores)
+
+def iniciarPartida(vtnMenu):
+    bloquearVetana(vtnMenu)
+    vntjugador=jugador.obternerNombres(vtnMenu,lstJugadores)
+    vtnMenu.wait_window(vntjugador)
+    vtnMatriz=crearMatriz.obtenerTamano(vtnMenu,matriz)
+    vtnMenu.wait_window(vtnMatriz)
+    desBloquearVentana(vtnMenu)
+    vtnMenu.focus_force()
+    juego.matrizGrafica(vtnMenu,matriz,lstJugadores)
 
 
 def main():
-    vMenu=Tk()
-    vMenu.title("Battleship")
-    vMenu.iconbitmap("img/bt.ico")
-    vMenu.geometry("1300x700")
-    vMenu.resizable(False,False)
+    vtnMenu=Tk()
+    vtnMenu.title("Battleship")
+    vtnMenu.iconbitmap("img/bt.ico")
+    vtnMenu.geometry("1300x700")
+    vtnMenu.resizable(False,False)
 
     #lables
     img=Image.open("img/battle.jpeg")
     img= img.resize((1300,700))
     fondo=ImageTk.PhotoImage(img)
-    lbl=Label(vMenu, image=fondo)
+    lbl=Label(vtnMenu, image=fondo)
     lbl.place(x=-10,y=0)
 
     #botones
-    btnNuevaPartida=Button(vMenu,text="Nueva Partida", command=lambda:iniciarPartida(vMenu))
+    btnNuevaPartida=Button(vtnMenu,text="Nueva Partida", command=lambda:iniciarPartida(vtnMenu))
     btnNuevaPartida.place(x=650-btnNuevaPartida.winfo_reqwidth()//2,y=350-btnNuevaPartida.winfo_reqheight()//2)
 
-    btnReanudarPartida=Button(vMenu,text="Reanudar Partida",command=lambda:cargarDatos(vMenu))
+    btnReanudarPartida=Button(vtnMenu,text="Reanudar Partida",command=lambda:cargarDatos(vtnMenu))
     btnReanudarPartida.place(x=650-btnReanudarPartida.winfo_reqwidth()//2,y=390-btnReanudarPartida.winfo_reqheight()//2)
 
-    btnSalir=Button(vMenu,text="Salir",command=lambda:vMenu.destroy())
+    btnSalir=Button(vtnMenu,text="Salir",command=lambda:vtnMenu.destroy())
     btnSalir.place(x=650-btnSalir.winfo_reqwidth()//2,y=430-btnSalir.winfo_reqheight()//2)
 
-    vMenu.mainloop()
+    vtnMenu.mainloop()
 
 
 
