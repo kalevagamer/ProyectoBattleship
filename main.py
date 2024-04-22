@@ -10,6 +10,7 @@ matrizBotones=[]
 def iniciarPartida():
     jugador.ObternerNombres()
     crearMatriz.obtenerTamano(matriz)
+    juego.crearMatriz(matriz)
 
 def main():
     vMenu=Tk()
