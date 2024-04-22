@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 
-def agregarJugadores(lst):
-    
+def agregarJugadores(lst,N1,N2,NN1,NN2):
+    lst.append((N1,NN1))
+    lst.append((N2,NN2))
 
 def ObternerNombres(lstJugadores):
     ven=Tk()
@@ -12,11 +13,16 @@ def ObternerNombres(lstJugadores):
     ven.configure(background="lightblue")
     ven.focus()
     #labels
-    lblAncho=Label(ven,text="Nombre Jugador 1",background="lightblue")
-    lblLargo=Label(ven,text="Nombre Jugador 2",background="lightblue")
-    
-    lblAncho.place(x=150-lblAncho.winfo_reqwidth()//2,y=10)
-    lblLargo.place(x=150-lblLargo.winfo_reqwidth()//2,y=70)
+    lblN1=Label(ven,text="Nombre Jugador 1",background="lightblue")
+    lblNickN1=Label(ven,text="NickName jugador 1",background="lightblue")
+    lblN2=Label(ven,text="Nombre Jugador 2",background="lightblue")
+    lblNickN2=Label(ven,text="NickName jugador 2",background="lightblue")
+
+
+    lblN1.place(x=60-lblN1.winfo_reqwidth()//2,y=10)
+    lblNickN1.place(x=210-lblN1.winfo_reqwidth()//2,y=10)
+    lblN2.place(x=60-lblN2.winfo_reqwidth()//2,y=70)
+    lblNickN2.place(x=210-lblN1.winfo_reqwidth()//2,y=70)
     
     
     #botones
@@ -27,15 +33,20 @@ def ObternerNombres(lstJugadores):
     btnConfirmar=Button(ven,text="Confirmar")
 
     #entrys
-    ntrAncho=Entry(ven,background="lightblue")
-    ntrAncho.insert(0,10)
-    ntrLargo=Entry(ven,background="lightblue")
-    ntrLargo.insert(0,10)
+    ntrN1=Entry(ven,background="lightblue")
+    ntrNickN1=Entry(ven,background="lightblue")
+    ntrN2=Entry(ven,background="lightblue")
+    ntrNickN2=Entry(ven,background="lightblue")
 
 
-    ntrAncho.place(x=155-ntrAncho.winfo_reqwidth()//2,y=30)
-    ntrLargo.place(x=155-ntrLargo.winfo_reqwidth()//2,y=90)
+    ntrN1.place(x=75-ntrN1.winfo_reqwidth()//2,y=30)
+    ntrNickN1.place(x=225-ntrN1.winfo_reqwidth()//2,y=30)
+    ntrN2.place(x=75-ntrN2.winfo_reqwidth()//2,y=90)
+    ntrNickN2.place(x=225-ntrN1.winfo_reqwidth()//2,y=90)
 
     #botones
-    btnConfirmar=Button(ven,text="Confirmar",command=lambda:agregarJugadores(lstJugadores))
+    btnConfirmar=Button(ven,text="Confirmar",command=lambda:agregarJugadores(lstJugadores,ntrN1.get(),ntrN2.get()
+                                                                             ,ntrNickN1.get(),ntrNickN2.get()))
     btnConfirmar.place(x=155-btnConfirmar.winfo_reqwidth()//2,y=120)
+
+    ven.mainloop()
