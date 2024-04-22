@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import messagebox
 
 def agregarJugadores(lst,N1,N2,NN1,NN2):
     lst.append((N1,NN1))
@@ -24,14 +23,6 @@ def ObternerNombres(lstJugadores):
     lblN2.place(x=60-lblN2.winfo_reqwidth()//2,y=70)
     lblNickN2.place(x=210-lblN1.winfo_reqwidth()//2,y=70)
     
-    
-    #botones
-    btnConfirmar=Button(ven,text="Confirmar")
-
-
-    #botones
-    btnConfirmar=Button(ven,text="Confirmar")
-
     #entrys
     ntrN1=Entry(ven,background="lightblue")
     ntrNickN1=Entry(ven,background="lightblue")
@@ -44,6 +35,7 @@ def ObternerNombres(lstJugadores):
     ntrN2.place(x=75-ntrN2.winfo_reqwidth()//2,y=90)
     ntrNickN2.place(x=225-ntrN1.winfo_reqwidth()//2,y=90)
 
+    
     #botones
     btnConfirmar=Button(ven,text="Confirmar",command=lambda:agregarJugadores(lstJugadores,ntrN1.get(),ntrN2.get()
                                                                              ,ntrNickN1.get(),ntrNickN2.get()))

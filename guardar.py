@@ -1,16 +1,15 @@
 from tkinter import *
 
-def leerDatos():
+def escribirDatos():
     pass
 
-def reanudarPartida(matriz,lJugadores):
+def guardarPartida(matriz,Ljugadores):
     ven=Tk()
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
     ven.geometry("300x200")
     ven.configure(background="lightblue")
     ven.focus()
-    
     #labels
     lblAncho=Label(ven,text="Numero de Filas (min 10)",background="lightblue")
     lblLargo=Label(ven,text="Numero de columnas (min 10)",background="lightblue")
@@ -27,6 +26,7 @@ def reanudarPartida(matriz,lJugadores):
 
     ntrAncho.place(x=155-ntrAncho.winfo_reqwidth()//2,y=30)
     ntrLargo.place(x=155-ntrLargo.winfo_reqwidth()//2,y=90)
+
     
     #botones
     btnConfirmar=Button(ven,text="Confirmar",command=lambda:agregarJugadores(lstJugadores,ntrN1.get(),ntrN2.get()

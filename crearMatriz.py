@@ -50,14 +50,6 @@ def obtenerTamano(mtrz):
     lblAncho.place(x=150-lblAncho.winfo_reqwidth()//2,y=10)
     lblLargo.place(x=150-lblLargo.winfo_reqwidth()//2,y=70)
     
-    
-    #botones
-    btnConfirmar=Button(ven,text="Confirmar")
-
-
-    #botones
-    btnConfirmar=Button(ven,text="Confirmar")
-
     #entrys
     ntrAncho=Entry(ven,background="lightblue")
     ntrAncho.insert(0,10)
