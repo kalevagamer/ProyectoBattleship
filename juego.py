@@ -18,5 +18,5 @@ def limpiarVentana(ven):
         e.destroy()
 
 def matrizGrafica(vMenu,matriz,lstJugadores):
-    #limpiarVentana(vMenu)
+    limpiarVentana(vMenu)
     pass

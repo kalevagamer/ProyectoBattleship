@@ -32,12 +32,12 @@ def main():
     vtnMenu=Tk()
     vtnMenu.title("Battleship")
     vtnMenu.iconbitmap("img/bt.ico")
-    vtnMenu.geometry("1300x700")
+    vtnMenu.geometry("1300x800")
     vtnMenu.resizable(False,False)
 
     #lables
     img=Image.open("img/battle.jpeg")
-    img= img.resize((1300,700))
+    img= img.resize((1302,800))
     fondo=ImageTk.PhotoImage(img)
     lbl=Label(vtnMenu, image=fondo)
     lbl.place(x=-10,y=0)
