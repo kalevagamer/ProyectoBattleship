@@ -1,9 +1,16 @@
 from tkinter import *
+from tkinter import messagebox
 
-def escribirDatos():
-    pass
+def escribirDatos(archivo,mtrz,lstJ):
+    if archivo.strip()=="":
+        messagebox.showerror("Error","No puedes guardar un archivo sin nombre")
+    else:
+        with open(archivo.strip(), "w") as file:
+            file.write("%s\n" % lstJ)
+            for e in mtrz:
+                file.write("%s\n" % e)
 
-def guardarPartida(matriz,Ljugadores):
+def guardarPartida(matriz,lstJugadores):
     ven=Tk()
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
@@ -11,26 +18,19 @@ def guardarPartida(matriz,Ljugadores):
     ven.configure(background="lightblue")
     ven.focus()
     #labels
-    lblAncho=Label(ven,text="Numero de Filas (min 10)",background="lightblue")
-    lblLargo=Label(ven,text="Numero de columnas (min 10)",background="lightblue")
+    lblpartida=Label(ven,text="Escriba el nombre de la partida",background="lightblue")
     
-    lblAncho.place(x=150-lblAncho.winfo_reqwidth()//2,y=10)
-    lblLargo.place(x=150-lblLargo.winfo_reqwidth()//2,y=70)
+    lblpartida.place(x=150-lblpartida.winfo_reqwidth()//2,y=10)
     
     #entrys
-    ntrAncho=Entry(ven,background="lightblue")
-    ntrAncho.insert(0,10)
-    ntrLargo=Entry(ven,background="lightblue")
-    ntrLargo.insert(0,10)
-
-
-    ntrAncho.place(x=155-ntrAncho.winfo_reqwidth()//2,y=30)
-    ntrLargo.place(x=155-ntrLargo.winfo_reqwidth()//2,y=90)
+    ntrPartida=Entry(ven,background="lightblue")
+    ntrPartida.insert(0,10)
+   
+    ntrPartida.place(x=155-ntrPartida.winfo_reqwidth()//2,y=30)
 
     
     #botones
-    btnConfirmar=Button(ven,text="Confirmar",command=lambda:agregarJugadores(lstJugadores,ntrN1.get(),ntrN2.get()
-                                                                             ,ntrNickN1.get(),ntrNickN2.get()))
+    btnConfirmar=Button(ven,text="Confirmar",command=lambda:escribirDatos(ntrPartida.get(),matriz,lstJugadores))
     btnConfirmar.place(x=155-btnConfirmar.winfo_reqwidth()//2,y=120)
 
     ven.mainloop()
