@@ -36,22 +36,86 @@ def barcoSeleccionado(n):
 
 def horientacionSeleccionada(btnHorientacion):
     global horientacion
-    if horientacion==1:
+    if horientacion==0:
         horientacion+=1
         btnHorientacion.configure(text="v")
-    elif horientacion==2:
+    elif horientacion==1:
         horientacion+=1
         btnHorientacion.configure(text="<")
-    elif horientacion==3:
+    elif horientacion==2:
         horientacion+=1
         btnHorientacion.configure(text="^")
-    elif horientacion==4:
-        horientacion=1
+    elif horientacion==3:
+        horientacion=0
         btnHorientacion.configure(text=">")
 
-def colocarBarcos(x, y, mtrBotones, frame):
+def rotarImagen(imagen):
     global barco,horientacion
+    imagen=imagen.rotate(horientacion*90)
+
     
+
+def colocarBarcos(x, y, mtrBotones,filas,columnas):
+    global barco,horientacion,imgAcorazado3,imgAcorazado2,imgAcorazado
+    global imgCrusero,imgCrusero2,imgDestructor,barco1,barco2,barco3
+    if horientacion==0:
+        if barco==1 and barco1<6:
+            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
+            barco1+=1
+        elif barco == 2 and y < columnas-1 and barco2<4:
+            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgCrusero2))
+            barco2+=1
+        elif barco == 3 and y < columnas-2 and barco3<2:
+            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
+            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
+            barco3+=1
+
+
+    elif horientacion==1:
+        if barco==1 and barco1<6:
+            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
+            barco1+=1
+        elif barco == 2 and y < 9 and barco2<4:
+            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
+            mtrBotones[x+1][y].config(image=rotarImagen(imgCrusero2))
+            barco2+=1
+        elif barco == 3 and y < 8 and barco3<2:
+            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
+            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
+            barco3+=1
+
+
+    elif horientacion==2:
+        if barco==1 and barco1<6:
+            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
+            barco1+=1
+        elif barco == 2 and y < 9 and barco2<4:
+            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgCrusero2))
+            barco2+=1
+        elif barco == 3 and y < 8 and barco3<2:
+            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
+            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
+            barco3+=1
+
+
+    elif horientacion==3:
+        if barco==1 and barco1<6:
+            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
+            barco1+=1
+        elif barco == 2 and y < 9 and barco2<4:
+            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgCrusero2))
+            barco2+=1
+        elif barco == 3 and y < 8 and barco3<2:
+            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
+            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
+            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
+            barco3+=1
 
 
 
@@ -61,7 +125,7 @@ def matrizGrafica(mtrBotones,frame,filas,columnas):
             for i in range(columnas):
                 button = Button(frame, text="", width=4, height=2)
                 button.grid(row=e, column=i, sticky="nsew")
-                button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBotones, frame))
+                button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBotones,filas,columnas))
                 mtrBotones[e][i]=button
 
 def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones):
@@ -106,9 +170,23 @@ def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones):
     matrizGrafica(mtrBotones,frameJugador2,f,c)
 
 
+imgDestructor=Image.open("img/b1.png")
+imgDestructor=imgDestructor.resize((4, 2))
 
+imgCrusero=Image.open("img/b21.png")
+imgCrusero=imgCrusero.resize((4, 2))
+imgCrusero2=Image.open("img/b22.png")
+imgCrusero2=imgCrusero2.resize((4, 2))
+
+imgAcorazado=Image.open("img/b31.png")
+imgAcorazado=imgAcorazado.resize((4, 2))
+imgAcorazado2=Image.open("img/b32.png")
+imgAcorazado2=imgAcorazado2.resize((4, 2))
+imgAcorazado3=Image.open("img/b33.png")
+imgAcorazado3=imgAcorazado3.resize((4, 2))
+                                   
 fase=0
-barco=0
+barco=1
 barco1=0
 barco2=0
 barco3=0
