@@ -7,6 +7,7 @@ import reanudar
 
 matriz=[]
 matrizBotones=[]
+matrizBotones2=[]
 lstJugadores=[]
 
 def bloquearVetana(vtn):
@@ -26,7 +27,7 @@ def iniciarPartida(vtnMenu):
     vtnMenu.wait_window(vtnMatriz)
     desBloquearVentana(vtnMenu)
     vtnMenu.focus_force()
-    juego.crearObjetos(vtnMenu,matriz,lstJugadores,matrizBotones)
+    juego.crearObjetos(vtnMenu,matriz,lstJugadores,matrizBotones,matrizBotones2)
 
 
 def main():

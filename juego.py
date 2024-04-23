@@ -2,17 +2,10 @@ from tkinter import *
 import guardar
 from PIL import Image,ImageTk
 
-def comprobarIzquierda():
-    pass
-
-def comprobarDerecha():
-    pass
-
-def comprobarArriba():
-    pass
-
-def comprobarAbajo():
-    pass
+def apagarBotones(mtrBotones):
+    for e in mtrBotones:
+        for i in e:
+            i
 
 def limpiarVentana(ven):
     for e in ven.winfo_children():
@@ -34,102 +27,157 @@ def barcoSeleccionado(n):
     global barco
     barco=n
 
-def horientacionSeleccionada(btnHorientacion):
-    global horientacion
-    if horientacion==0:
-        horientacion+=1
-        btnHorientacion.configure(text="v")
-    elif horientacion==1:
-        horientacion+=1
-        btnHorientacion.configure(text="<")
-    elif horientacion==2:
-        horientacion+=1
-        btnHorientacion.configure(text="^")
-    elif horientacion==3:
-        horientacion=0
-        btnHorientacion.configure(text=">")
+def configurarBoton(matriz,bnt,x,y):
+    # if matriz[x][y]==1:
+    # elif matriz[x][y]==1:
+    pass
+
+def orientacionSeleccionada(btnOrientacion):
+    global orientacion
+    if orientacion==0:
+        orientacion+=1
+        btnOrientacion.configure(text="^")
+    elif orientacion==1:
+        orientacion+=1
+        btnOrientacion.configure(text="<")
+    elif orientacion==2:
+        orientacion+=1
+        btnOrientacion.configure(text="v")
+    elif orientacion==3:
+        orientacion=0
+        btnOrientacion.configure(text=">")
 
 def rotarImagen(imagen):
-    global barco,horientacion
-    imagen=imagen.rotate(horientacion*90)
+    global barco,orientacion
+    imagenRotada=imagen.rotate(orientacion*90)
+    imagen=ImageTk.PhotoImage(imagenRotada)
+    return imagen
+
+
+def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz,indice):
+    global barco,orientacion,imgAcorazado3,imgAcorazado2,imgAcorazado
+    global imgCrusero,imgCrusero2,imgDestructor,barco1,barco2,barco3
+    if orientacion==0:
+        if barco==1 and barco1<6:
+            img=rotarImagen(imgDestructor)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y].image=img
+            barco1+=1
+        elif barco == 2 and y < columnas-1 and barco2<4:
+            img=rotarImagen(imgCrusero2)
+            img2=rotarImagen(imgCrusero)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y+1].config(image=img2)
+            mtrBotones[x][y].image=img
+            mtrBotones[x][y+1].image=img2
+            barco2+=1
+        elif barco == 3 and y < columnas-2 and barco3<2:
+            img=rotarImagen(imgAcorazado3)
+            img2=rotarImagen(imgAcorazado2)
+            img3=rotarImagen(imgAcorazado)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y+1].config(image=img2)
+            mtrBotones[x][y+2].config(image=img3)
+            mtrBotones[x][y].image=img
+            mtrBotones[x][y+1].image=img2
+            mtrBotones[x][y+2].image=img3
+            barco3+=1
+
+    elif orientacion==1:
+        if barco==1 and barco1<6:
+            img=rotarImagen(imgDestructor)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y].image=img
+            barco1+=1
+        elif barco == 2 and x < filas-1 and barco2<4:
+            img=rotarImagen(imgCrusero)
+            img2=rotarImagen(imgCrusero2)
+            mtrBotones[x-1][y].config(image=img)
+            mtrBotones[x][y].config(image=img2)
+            mtrBotones[x-1][y].image=img
+            mtrBotones[x][y].image=img2
+            barco2+=1
+            
+        elif barco == 3 and x < filas-2 and barco3<2:
+            img=rotarImagen(imgAcorazado3)
+            img2=rotarImagen(imgAcorazado2)
+            img3=rotarImagen(imgAcorazado)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x-1][y].config(image=img2)
+            mtrBotones[x-2][y].config(image=img3)
+            mtrBotones[x][y].image=img
+            mtrBotones[x-1][y].image=img2
+            mtrBotones[x-2][y].image=img3
+            barco3+=1
+
+    elif orientacion==2:
+        if barco==1 and barco1<6:
+            img=rotarImagen(imgDestructor)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y].image=img
+            barco1+=1
+        elif barco == 2 and y > 1 and barco2<4:
+            img=rotarImagen(imgCrusero2)
+            img2=rotarImagen(imgCrusero)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y-1].config(image=img2)
+            mtrBotones[x][y].image=img
+            mtrBotones[x][y-1].image=img2
+            barco2+=1
+        elif barco == 3 and y > 2 and barco3<2:
+            img=rotarImagen(imgAcorazado3)
+            img2=rotarImagen(imgAcorazado2)
+            img3=rotarImagen(imgAcorazado)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y-1].config(image=img2)
+            mtrBotones[x][y-2].config(image=img3)
+            mtrBotones[x][y].image=img
+            mtrBotones[x][y-1].image=img2
+            mtrBotones[x][y-2].image=img3
+            barco3+=1
+
+
+    elif orientacion==3:
+        if barco==1 and barco1<6:
+            img=rotarImagen(imgDestructor)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x][y].image=img
+            barco1+=1
+        elif barco == 2 and x < filas-1 and barco2<4:
+            img=rotarImagen(imgCrusero2)
+            img2=rotarImagen(imgCrusero)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x+1][y].config(image=img2)
+            mtrBotones[x][y].image=img
+            mtrBotones[x+1][y].image=img2
+            barco2+=1
+        elif barco == 3 and x < filas-2 and barco3<2:
+            img=rotarImagen(imgAcorazado3)
+            img2=rotarImagen(imgAcorazado2)
+            img3=rotarImagen(imgAcorazado)
+            mtrBotones[x][y].config(image=img)
+            mtrBotones[x+1][y].config(image=img2)
+            mtrBotones[x+2][y].config(image=img3)
+            mtrBotones[x][y].image=img
+            mtrBotones[x+1][y].image=img2
+            mtrBotones[x+2][y].image=img3
+            barco3+=1
+
+
+
+def matrizGrafica(matriz,mtrBotones,frame,filas,columnas):
+    for e in range(filas):
+        for i in range(columnas):
+            button = Button(frame, text="", width=4, height=2)
+            button.grid(row=e, column=i,sticky="nsew")
+            mtrBotones[e][i]=button
+            button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBotones,filas,columnas,matriz))
 
     
 
-def colocarBarcos(x, y, mtrBotones,filas,columnas):
-    global barco,horientacion,imgAcorazado3,imgAcorazado2,imgAcorazado
-    global imgCrusero,imgCrusero2,imgDestructor,barco1,barco2,barco3
-    if horientacion==0:
-        if barco==1 and barco1<6:
-            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
-            barco1+=1
-        elif barco == 2 and y < columnas-1 and barco2<4:
-            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgCrusero2))
-            barco2+=1
-        elif barco == 3 and y < columnas-2 and barco3<2:
-            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
-            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
-            barco3+=1
-
-
-    elif horientacion==1:
-        if barco==1 and barco1<6:
-            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
-            barco1+=1
-        elif barco == 2 and y < 9 and barco2<4:
-            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
-            mtrBotones[x+1][y].config(image=rotarImagen(imgCrusero2))
-            barco2+=1
-        elif barco == 3 and y < 8 and barco3<2:
-            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
-            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
-            barco3+=1
-
-
-    elif horientacion==2:
-        if barco==1 and barco1<6:
-            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
-            barco1+=1
-        elif barco == 2 and y < 9 and barco2<4:
-            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgCrusero2))
-            barco2+=1
-        elif barco == 3 and y < 8 and barco3<2:
-            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
-            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
-            barco3+=1
-
-
-    elif horientacion==3:
-        if barco==1 and barco1<6:
-            mtrBotones[x][y].config(image=rotarImagen(imgDestructor))
-            barco1+=1
-        elif barco == 2 and y < 9 and barco2<4:
-            mtrBotones[x][y].config(image=rotarImagen(imgCrusero))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgCrusero2))
-            barco2+=1
-        elif barco == 3 and y < 8 and barco3<2:
-            mtrBotones[x][y].config(image=rotarImagen(imgAcorazado))
-            mtrBotones[x][y+1].config(image=rotarImagen(imgAcorazado2))
-            mtrBotones[x][y+2].config(image=rotarImagen(imgAcorazado3))
-            barco3+=1
-
-
-
-def matrizGrafica(mtrBotones,frame,filas,columnas):
-    mtrBotones=[[None for _ in range(filas)] for _ in range(columnas)]
-    for e in range(filas):
-            for i in range(columnas):
-                button = Button(frame, text="", width=4, height=2)
-                button.grid(row=e, column=i, sticky="nsew")
-                button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBotones,filas,columnas))
-                mtrBotones[e][i]=button
-
-def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones):
+def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones,mtrBotones2):
     limpiarVentana(vMenu)
+    
     #labels
     lblJugador1=Label(vMenu,text=f"Jugador 1: {lstJugadores[0][0]}",font=("Arial", 16))
     lblJugador1.place(x=60,y=20)
@@ -160,34 +208,38 @@ def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones):
     btnAcorazado=Button(vMenu,text="Acorazado",font=("Arial", 12),command=lambda:barcoSeleccionado(3))
     btnAcorazado.place(x=720, y=600)
 
-    btnHorientacion=Button(vMenu,text=">",font=("Arial", 12),command=lambda:horientacionSeleccionada(btnHorientacion))
-    btnHorientacion.place(x=920, y=600)
+    btnOrientacion=Button(vMenu,text=">",font=("Arial", 12),command=lambda:orientacionSeleccionada(btnOrientacion))
+    btnOrientacion.place(x=920, y=600)
 
 
     f=len(matriz)
     c=len(matriz[0])//2
-    matrizGrafica(mtrBotones,frameJugador1,f,c)
-    matrizGrafica(mtrBotones,frameJugador2,f,c)
+    mtrBotones=[[None for _ in range(c)] for _ in range(f)]
+    mtrBotones2=[[None for _ in range(c)] for _ in range(f)]
+    matrizGrafica(matriz,mtrBotones,frameJugador1,f,c,1)
+    matrizGrafica(matriz,mtrBotones2,frameJugador2,f,c,2)
+    for e in mtrBotones:
+        print(e)
 
 
 imgDestructor=Image.open("img/b1.png")
-imgDestructor=imgDestructor.resize((4, 2))
+imgDestructor=imgDestructor.resize((40, 40))
 
 imgCrusero=Image.open("img/b21.png")
-imgCrusero=imgCrusero.resize((4, 2))
+imgCrusero=imgCrusero.resize((40, 40))
 imgCrusero2=Image.open("img/b22.png")
-imgCrusero2=imgCrusero2.resize((4, 2))
+imgCrusero2=imgCrusero2.resize((40, 40))
 
 imgAcorazado=Image.open("img/b31.png")
-imgAcorazado=imgAcorazado.resize((4, 2))
+imgAcorazado=imgAcorazado.resize((40, 40))
 imgAcorazado2=Image.open("img/b32.png")
-imgAcorazado2=imgAcorazado2.resize((4, 2))
+imgAcorazado2=imgAcorazado2.resize((40, 40))
 imgAcorazado3=Image.open("img/b33.png")
-imgAcorazado3=imgAcorazado3.resize((4, 2))
+imgAcorazado3=imgAcorazado3.resize((40, 40))
                                    
 fase=0
 barco=1
 barco1=0
 barco2=0
 barco3=0
-horientacion=1
+orientacion=0

@@ -1,20 +1,17 @@
 from tkinter import *
 from tkinter import messagebox
+import json
 
 def escribirDatos(archivo,mtrz,lstJ):
     archivo=f"saves/{str(archivo).strip()}.txt"
-    lstJStr=[]
-    mtrzStr=[]
     if archivo=="":
         messagebox.showerror("Error","No puedes guardar un archivo sin nombre")
     else:
-        for e in lstJ:
-            lstJStr.append(str(e)+"\n")
-        for e in mtrz:
-            mtrzStr.append(str(e)+"\n")
-        with open(archivo, "w") as file:
-            file.writelines(lstJStr)
-            file.writelines(mtrzStr)
+        with open(archivo, 'w') as f:
+            json.dump(mtrz, f)
+        with open(archivo, 'w') as f:
+            json.dump(lstJ, f)
+        archivo=f"saves/{str(archivo).strip()}-players.txt"
         messagebox.showinfo("Guardado","La partida se ha guardado satisfactoriamente")
             
 def guardarPartida(vMenu,matriz,lstJugadores):

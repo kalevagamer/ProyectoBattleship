@@ -1,20 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
+import json
 def leerDatos(archivo,matriz,lstJugadores):
     archivo=f"saves/{str(archivo).strip()}.txt"
     try:
-        cont=0
-        with open(archivo, "r") as file:
-            for e in file:
-                lstJugadores.append(eval(e.strip()))
-                cont+=1
-                if cont==2:
-                    break
-            cont=0
-            for e in file: 
-                if cont==2:
-                    matriz.append(eval(e.strip()))
-                cont+=1
+        with open(archivo, 'r') as f:
+            matriz=json.load(f)
+        archivo=f"saves/{str(archivo).strip()}-players.txt" 
+        with open(archivo, 'r') as f:
+            lstJugadores=json.load(f)
     except:
         messagebox.showerror("Error", "El archivo no existe o no se puede abrir.")
 
