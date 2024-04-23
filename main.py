@@ -6,6 +6,7 @@ import juego
 import reanudar
 
 matriz=[]
+matrizBotones=[]
 lstJugadores=[]
 
 def bloquearVetana(vtn):
@@ -25,32 +26,32 @@ def iniciarPartida(vtnMenu):
     vtnMenu.wait_window(vtnMatriz)
     desBloquearVentana(vtnMenu)
     vtnMenu.focus_force()
-    juego.matrizGrafica(vtnMenu,matriz,lstJugadores)
+    juego.crearObjetos(vtnMenu,matriz,lstJugadores,matrizBotones)
 
 
 def main():
     vtnMenu=Tk()
     vtnMenu.title("Battleship")
     vtnMenu.iconbitmap("img/bt.ico")
-    vtnMenu.geometry("1300x800")
+    vtnMenu.geometry("1100x650")
     vtnMenu.resizable(False,False)
 
     #lables
     img=Image.open("img/battle.jpeg")
-    img= img.resize((1302,800))
+    img= img.resize((1102,650))
     fondo=ImageTk.PhotoImage(img)
     lbl=Label(vtnMenu, image=fondo)
-    lbl.place(x=-10,y=0)
+    lbl.place(x=-5,y=0)
 
     #botones
-    btnNuevaPartida=Button(vtnMenu,text="Nueva Partida", command=lambda:iniciarPartida(vtnMenu))
-    btnNuevaPartida.place(x=650-btnNuevaPartida.winfo_reqwidth()//2,y=350-btnNuevaPartida.winfo_reqheight()//2)
+    btnNuevaPartida=Button(vtnMenu,text="Nueva Partida",font=("Arial", 12), command=lambda:iniciarPartida(vtnMenu))
+    btnNuevaPartida.place(x=550-btnNuevaPartida.winfo_reqwidth()//2,y=350-btnNuevaPartida.winfo_reqheight()//2)
 
-    btnReanudarPartida=Button(vtnMenu,text="Reanudar Partida",command=lambda:cargarDatos(vtnMenu))
-    btnReanudarPartida.place(x=650-btnReanudarPartida.winfo_reqwidth()//2,y=390-btnReanudarPartida.winfo_reqheight()//2)
+    btnReanudarPartida=Button(vtnMenu,text="Reanudar Partida",font=("Arial", 12),command=lambda:cargarDatos(vtnMenu))
+    btnReanudarPartida.place(x=550-btnReanudarPartida.winfo_reqwidth()//2,y=390-btnReanudarPartida.winfo_reqheight()//2)
 
-    btnSalir=Button(vtnMenu,text="Salir",command=lambda:vtnMenu.destroy())
-    btnSalir.place(x=650-btnSalir.winfo_reqwidth()//2,y=430-btnSalir.winfo_reqheight()//2)
+    btnSalir=Button(vtnMenu,text="Salir",font=("Arial", 12),command=lambda:vtnMenu.destroy())
+    btnSalir.place(x=550-btnSalir.winfo_reqwidth()//2,y=430-btnSalir.winfo_reqheight()//2)
 
     vtnMenu.mainloop()
 
