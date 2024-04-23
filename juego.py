@@ -54,7 +54,7 @@ def rotarImagen(imagen):
     return imagen
 
 
-def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz,indice):
+def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz):
     global barco,orientacion,imgAcorazado3,imgAcorazado2,imgAcorazado
     global imgCrusero,imgCrusero2,imgDestructor,barco1,barco2,barco3
     if orientacion==0:
@@ -89,7 +89,7 @@ def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz,indice):
             mtrBotones[x][y].config(image=img)
             mtrBotones[x][y].image=img
             barco1+=1
-        elif barco == 2 and x < filas-1 and barco2<4:
+        elif barco == 2 and x>0 and barco2<4:
             img=rotarImagen(imgCrusero)
             img2=rotarImagen(imgCrusero2)
             mtrBotones[x-1][y].config(image=img)
@@ -98,7 +98,7 @@ def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz,indice):
             mtrBotones[x][y].image=img2
             barco2+=1
             
-        elif barco == 3 and x < filas-2 and barco3<2:
+        elif barco == 3 and x>1 and barco3<2:
             img=rotarImagen(imgAcorazado3)
             img2=rotarImagen(imgAcorazado2)
             img3=rotarImagen(imgAcorazado)
@@ -116,7 +116,7 @@ def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz,indice):
             mtrBotones[x][y].config(image=img)
             mtrBotones[x][y].image=img
             barco1+=1
-        elif barco == 2 and y > 1 and barco2<4:
+        elif barco == 2 and y > 0 and barco2<4:
             img=rotarImagen(imgCrusero2)
             img2=rotarImagen(imgCrusero)
             mtrBotones[x][y].config(image=img)
@@ -124,7 +124,7 @@ def colocarBarcos(x, y, mtrBotones,filas,columnas,matriz,indice):
             mtrBotones[x][y].image=img
             mtrBotones[x][y-1].image=img2
             barco2+=1
-        elif barco == 3 and y > 2 and barco3<2:
+        elif barco == 3 and y > 1 and barco3<2:
             img=rotarImagen(imgAcorazado3)
             img2=rotarImagen(imgAcorazado2)
             img3=rotarImagen(imgAcorazado)
@@ -216,8 +216,8 @@ def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones,mtrBotones2):
     c=len(matriz[0])//2
     mtrBotones=[[None for _ in range(c)] for _ in range(f)]
     mtrBotones2=[[None for _ in range(c)] for _ in range(f)]
-    matrizGrafica(matriz,mtrBotones,frameJugador1,f,c,1)
-    matrizGrafica(matriz,mtrBotones2,frameJugador2,f,c,2)
+    matrizGrafica(matriz,mtrBotones,frameJugador1,f,c)
+    matrizGrafica(matriz,mtrBotones2,frameJugador2,f,c)
     for e in mtrBotones:
         print(e)
 
