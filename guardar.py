@@ -2,19 +2,28 @@ from tkinter import *
 from tkinter import messagebox
 import json
 
-def escribirDatos(archivo,mtrz,lstJ):
-    archivo=f"saves/{str(archivo).strip()}.txt"
-    if archivo=="":
+def escribirDatos(ven,archivo,mtrzImg,mtrzImg2,lstJ,lstA):
+    
+    if archivo.strip()=="":
+        
         messagebox.showerror("Error","No puedes guardar un archivo sin nombre")
     else:
-        with open(archivo, 'w') as f:
-            json.dump(mtrz, f)
-        with open(archivo, 'w') as f:
+        auxArchivo=f"{str(archivo).strip()}.txt"
+        with open(auxArchivo, 'w') as f:
+            json.dump(mtrzImg, f)
+        auxArchivo=f"saves/{str(archivo).strip()}-players.txt"
+        with open(auxArchivo, 'w') as f:
             json.dump(lstJ, f)
-        archivo=f"saves/{str(archivo).strip()}-players.txt"
+        auxArchivo=f"saves/{str(archivo).strip()}-p2.txt"
+        with open(auxArchivo, 'w') as f:
+            json.dump(mtrzImg2, f)
+        auxArchivo=f"saves/{str(archivo).strip()}-Ac.txt"
+        with open(auxArchivo, 'w') as f:
+            json.dump(lstA, f)
         messagebox.showinfo("Guardado","La partida se ha guardado satisfactoriamente")
+        ven.destroy()
             
-def guardarPartida(vMenu,matriz,lstJugadores):
+def guardarPartida(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos):
     ven=Toplevel(vMenu)
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
@@ -34,5 +43,8 @@ def guardarPartida(vMenu,matriz,lstJugadores):
 
     
     #botones
-    btnConfirmar=Button(ven,text="Confirmar",command=lambda:escribirDatos(ntrPartida.get(),matriz,lstJugadores))
+    btnConfirmar=Button(ven,text="Confirmar",command=lambda:escribirDatos(ven,ntrPartida.get(),mtrImagenes
+                                                                        ,mtrImagenes2,lstJugadores,lstAciertos))
     btnConfirmar.place(x=155-btnConfirmar.winfo_reqwidth()//2,y=120)
+
+    return ven

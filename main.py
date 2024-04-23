@@ -7,10 +7,11 @@ import reanudar
 
 matriz=[]
 matrizBotones=[]
-matrizBotones2=[0]
+matrizBotones2=[]
 matrizImagenes=[]
 matrizImagenes2=[]
 lstJugadores=[]
+lstAciertos=[]
 
 def bloquearVetana(vtn):
     vtn.attributes("-disabled", True)
@@ -19,7 +20,12 @@ def desBloquearVentana(vtn):
     vtn.attributes("-disabled", False)
 
 def cargarDatos(vtnMenu):
-    reanudar.reanudarPartida(vtnMenu,matriz,lstJugadores)
+    bloquearVetana(vtnMenu)
+    vtnReanudar=reanudar.reanudarPartida(vtnMenu,matrizImagenes,matrizImagenes2,lstJugadores,lstAciertos)
+    vtnMenu.wait_window(vtnReanudar)
+    desBloquearVentana(vtnMenu)
+    vtnMenu.focus_force()
+    juego.empezarJuego(vtnMenu,lstJugadores,matrizBotones,matrizImagenes,matrizBotones2,matrizImagenes2,lstAciertos)
 
 def iniciarPartida(vtnMenu):
     bloquearVetana(vtnMenu)

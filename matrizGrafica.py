@@ -35,7 +35,7 @@ juego=tablero(20,10)
 
 imagen = Image.open("img/b1.png")
 imagen = imagen.resize((50, 50))  # Ajusta el tamaño de la imagen
-imagen_rotada = imagen.rotate(0)
+imagen_rotada = imagen.rotate(15*90)
 imagen = ImageTk.PhotoImage(imagen_rotada)
 
 juego.mainloop()

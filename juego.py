@@ -22,8 +22,129 @@ def limpiarVentana(ven):
     for e in ven.winfo_children():
         e.destroy()
 
-def guardarP():
-    pass
+# def orientarReanudar(lstTodasImg,mtrzImg):
+#     e=len(mtrzImg)
+#     i=len(mtrzImg[0])
+#     mtrz=[[None for _ in range(i)] for _ in range(e)]
+#     for x in range(e):
+#         for y in range(i):
+#             if mtrzImg[x][y]==lstTodasImg[0]:
+#                 mtrz[x][y]==lstTodasImg[0]
+#             elif mtrz[x][y]==lstTodasImg[1]: 
+#                 mtrz[x][y]=lstTodasImg[1]
+#             elif mtrz[x][y]==lstTodasImg[2]: 
+#                 mtrz[x][y]=lstTodasImg[2]
+#             elif mtrz[x][y]==lstTodasImg[3]: 
+#                 mtrz[x][y]=lstTodasImg[3]
+#             elif mtrz[x][y]==lstTodasImg[4]: 
+#                 mtrz[x][y]=lstTodasImg[4]
+#             elif mtrz[x][y]==lstTodasImg[5]: 
+#                 mtrz[x][y]=lstTodasImg[5]
+#             elif mtrz[x][y]==lstTodasImg[6]: 
+#                 mtrz[x][y]=lstTodasImg[6]
+#             elif mtrz[x][y]==lstTodasImg[7]: 
+#                 mtrz[x][y]=lstTodasImg[7]
+#             elif mtrz[x][y]==lstTodasImg[8]: 
+#                 mtrz[x][y]=lstTodasImg[8]
+#             elif mtrz[x][y]==lstTodasImg[9]:
+#                 mtrz[x][y]=lstTodasImg[9]
+#             elif mtrz[x][y]==lstTodasImg[10]:
+#                 mtrz[x][y]=lstTodasImg[10]
+#             elif mtrz[x][y]==lstTodasImg[11]:
+#                 mtrz[x][y]=lstTodasImg[11]
+#             elif mtrz[x][y]==lstTodasImg[12]:
+#                 mtrz[x][y]=lstTodasImg[12]
+#             elif mtrz[x][y]==lstTodasImg[13]:
+#                 mtrz[x][y]=lstTodasImg[13]
+#             elif mtrz[x][y]==lstTodasImg[14]:
+#                 mtrz[x][y]=lstTodasImg[14]
+#             elif mtrz[x][y]==lstTodasImg[15]:
+#                 mtrz[x][y]=lstTodasImg[15]
+#             elif mtrz[x][y]==lstTodasImg[16]:
+#                 mtrz[x][y]=lstTodasImg[16]
+#             elif mtrz[x][y]==lstTodasImg[17]:
+#                 mtrz[x][y]=lstTodasImg[17]
+#             elif mtrz[x][y]==lstTodasImg[18]:
+#                 mtrz[x][y]=lstTodasImg[18]
+#             elif mtrz[x][y]==lstTodasImg[19]:
+#                 mtrz[x][y]=lstTodasImg[19]
+#             elif mtrz[x][y]==lstTodasImg[20]:
+#                 mtrz[x][y]=lstTodasImg[20]
+#             elif mtrz[x][y]==lstTodasImg[21]:
+#                 mtrz[x][y]=lstTodasImg[21]
+#             elif mtrz[x][y]==lstTodasImg[22]:
+#                 mtrz[x][y]=lstTodasImg[22]
+#             elif mtrz[x][y]==lstTodasImg[23]:
+#                 mtrz[x][y]=lstTodasImg[23]
+    
+#     return mtrz
+
+
+# def orientar(mtrzImg,lstTodasImg):
+#     e=len(mtrzImg)
+#     i=len(mtrzImg[0])
+#     mtrz=[[None for _ in range(i)] for _ in range(e)]
+#     for x in range(e):
+#         for y in range(i):
+#             img=mtrzImg[x][y]
+#             if img==lstTodasImg[0]:
+#                 mtrz[x][y]=0
+#             elif img==lstTodasImg[1]:
+#                 mtrz[x][y]=1
+#             elif img==lstTodasImg[2]:
+#                 mtrz[x][y]=2
+#             elif img==lstTodasImg[3]:
+#                 mtrz[x][y]=3
+#             elif img==lstTodasImg[4]:
+#                 mtrz[x][y]=4
+#             elif img==lstTodasImg[5]:
+#                 mtrz[x][y]=5
+#             elif img==lstTodasImg[6]:
+#                 mtrz[x][y]=6
+#             elif img==lstTodasImg[7]:
+#                 mtrz[x][y]=7
+#             elif img==lstTodasImg[8]:
+#                 mtrz[x][y]=8
+#             elif img==lstTodasImg[9]:
+#                 mtrz[x][y]=9
+#             elif img==lstTodasImg[10]:
+#                 mtrz[x][y]=10
+#             elif img==lstTodasImg[11]:
+#                 mtrz[x][y]=11
+#             elif img==lstTodasImg[12]:
+#                 mtrz[x][y]=12
+#             elif img==lstTodasImg[13]:
+#                 mtrz[x][y]=13
+#             elif img==lstTodasImg[14]:
+#                 mtrz[x][y]=14
+#             elif img==lstTodasImg[15]:
+#                 mtrz[x][y]=15
+#             elif img==lstTodasImg[16]:
+#                 mtrz[x][y]=16
+#             elif img==lstTodasImg[17]:
+#                 mtrz[x][y]=17
+#             elif img==lstTodasImg[18]:
+#                 mtrz[x][y]=18
+#             elif img==lstTodasImg[19]:
+#                 mtrz[x][y]=19
+#             elif img==lstTodasImg[20]:
+#                 mtrz[x][y]=20
+#             elif img==lstTodasImg[21]:
+#                 mtrz[x][y]=21
+#             elif img==lstTodasImg[22]:
+#                 mtrz[x][y]=22
+#             elif img==lstTodasImg[23]:
+#                 mtrz[x][y]=23
+            
+#     return mtrz
+
+def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasImagenes):
+    # mtrOrientacion=orientar(mtrImagenes,lstTodasImagenes)
+    # mtrOrientacion2=orientar(mtrImagenes2,lstTodasImagenes)
+    vMenu.attributes("-disabled", True)
+    vntGuardar=guardar.guardarPartida(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos)
+    vMenu.wait_window(vntGuardar)
+    vMenu.attributes("-disabled", False)
 
 def empate():
     pass
@@ -31,7 +152,7 @@ def empate():
 def disparo(e, i, mtrBotones,mtrImagenes,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes):
     print("hola")
 
-def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2):
+def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2,lstAciertos=[]):
     global fase
     fase=2
     limpiarVentana(vMenu)
@@ -55,7 +176,7 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     frameJugador2=Frame(vMenu,borderwidth=2,relief="solid",width=600,height=400)
     frameJugador2.place(x=650, y=140)
     #Botones
-    btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP())
+    btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasImagenes))
     btnGuardar.place(x=320, y=600)
 
     btnEmpate=Button(vMenu,text="Declarar Empate",font=("Arial", 12),command=lambda:empate())
@@ -66,6 +187,16 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores)
     mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores)
     mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores)
+    lstTodasImagenes=['b1.png','b1_rotated_90.png','b1_rotated_180.png','b1_rotated_270.png',
+                      'b21.png','b21_rotated_90.png','b21_rotated_180.png','b21_rotated_270.png',
+                      'b22.png','b22_rotated_90.png','b22_rotated_180.png','b22_rotated_270.png',
+                      'b31.png','b31_rotated_90.png','b31_rotated_180.png','b31_rotated_270.png',
+                      'b32.png','b32_rotated_90.png','b32_rotated_180.png','b32_rotated_270.png',
+                      'b33.png','b33_rotated_90.png','b33_rotated_180.png','b33_rotated_270.png']
+    # if lstAciertos:
+    #     mtrImagenes=orientarReanudar(lstTodasImagenes,mtrImagenes)
+    #     mtrImagenes2=orientarReanudar(lstTodasImagenes,mtrImagenes2)
+
    
 
 def barcoSeleccionado(n):
@@ -96,6 +227,7 @@ def rotarImagen(imagen):
     imagenRotada=imagen.rotate(orientacion*90)
     imagen=ImageTk.PhotoImage(imagenRotada)
     return imagen
+
 
 
 def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtnMenu,lstJugadores):
@@ -253,13 +385,13 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
             barco2=0
             barco3=0
             messagebox.showinfo("Jugador 2","Tu turno de colocar, recuerda que tienes 6 Destructores, 4 Cruceros y 2 Acorazados")
-            
+            fase+=1
             encenderBotones(mtrOtrosBtn,mtrOtrasImg)
         elif fase==1:
             apagarBotones(mtrBtn)
             encenderBotones(mtrOtrosBtn,mtrOtrasImg)
             empezarJuego(vtnMenu,lstJugadores,mtrOtrosBtn,mtrOtrasImg,mtrBtn,mtrImg)
-        fase+=1
+        
     
 
 
