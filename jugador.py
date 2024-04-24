@@ -3,6 +3,25 @@ from tkinter import messagebox
 import crearMatriz
 
 def agregarJugadores(ven,lst,N1,N2,NN1,NN2):
+    """
+    Agrega dos jugadores a la lista de jugadores si los campos de nombre y apodo no están vacíos.
+
+    Args:
+    ven : Tkinter window object
+        La ventana que se cerrará si los datos son válidos.
+    lst : list
+        Lista donde se agregarán los jugadores.
+    N1 : str
+        Nombre del primer jugador.
+    N2 : str
+        Nombre del segundo jugador.
+    NN1 : str
+        Nickname del primer jugador.
+    NN2 : str
+        Nickname del segundo jugador.
+
+    Si alguno de los nombres o nicknames está vacío, muestra un mensaje de error y pone el foco de vuelta en la ventana.
+    """
     if N1.strip() and N2.strip() and NN1.strip() and NN2.strip():
         lst.append([N1,NN1,0])
         lst.append([N2,NN2,0])
@@ -12,9 +31,30 @@ def agregarJugadores(ven,lst,N1,N2,NN1,NN2):
         ven.focus_force()
 
 def noCerrar():
-    pass
+     """
+    Función placeholder utilizada para anular el comportamiento de cierre de ventana.
+    
+    Esta función se asigna al evento de cierre de ventana para evitar que la ventana se cierre.
+    """
+     pass
 
 def obternerNombres(vtnMenu,lstJugadores):
+    """
+     Crea una ventana para la entrada de nombres y nicknames de dos jugadores.
+
+    Args:
+    vtnMenu : Tkinter window object
+        Ventana principal desde la cual se lanza esta nueva ventana.
+    lstJugadores : list
+        Lista donde se agregarán los jugadores después de su confirmación.
+
+    Returns:
+    vent : Tkinter Toplevel object
+        La ventana creada con campos de entrada y botones para confirmación.
+
+    La ventana crea entradas para nombres y nicknames y asigna la acción de agregar jugadores al botón confirmar.
+    Además, establece medidas para evitar el cierre accidental utilizando un protocolo de ventana especial.
+    """
     vent=Toplevel(vtnMenu)
     vent.protocol("WM_DELETE_WINDOW", noCerrar)
     vent.title("Battelship")

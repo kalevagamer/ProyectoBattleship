@@ -2,14 +2,31 @@ from tkinter import *
 from tkinter import messagebox
 import guardar
 from PIL import Image,ImageTk
-import time
 
 def apagarBotones(mtrBotones):
+    """
+    Deshabilita todos los botones en la matriz de botones.
+
+    Args:
+        mtrBotones (list): Una matriz de botones (matriz 2D).
+
+    Returns:
+        None
+    """
     for e in mtrBotones:
         for i in e:
             i.config(state="disabled",image='')
 
 def encenderBotones(mtrBotones):
+    """
+    Habilita todos los botones en la matriz de botones.
+
+    Args:
+        mtrBotones (list): Una matriz de botones (matriz 2D).
+
+    Returns:
+        None
+    """
     x=0
     for e in mtrBotones:
         y=0
@@ -19,12 +36,37 @@ def encenderBotones(mtrBotones):
         x+=1
 
 def limpiarVentana(ven):
+    """
+    Limpia todos los widgets dentro de una ventana.
+
+    Args:
+        ven (Tk): La ventana de Tkinter a limpiar.
+
+    Returns:
+        None
+    """
     for e in ven.winfo_children():
         e.destroy()
 
     
 
-def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasImagenes):
+def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos):
+    """
+    Maneja el proceso de guardado de partida.
+
+    Args:
+        vMenu (Tk): La ventana principal de la aplicación.
+        lstJugadores (list): Lista de jugadores.
+        mtrImagenes (list): Matriz de imágenes del jugador 1.
+        mtrImagenes2 (list): Matriz de imágenes del jugador 2.
+        lstAciertos (list): Lista de aciertos.
+        lstTodasImagenes (list): Lista de rutas de imágenes.
+
+    Returns:
+        None
+    """
+    # mtrOrientacion=orientar(mtrImagenes,lstTodasImagenes)
+    # mtrOrientacion2=orientar(mtrImagenes2,lstTodasImagenes)
     vMenu.attributes("-disabled", True)
     vntGuardar=guardar.guardarPartida(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos)
     vMenu.wait_window(vntGuardar)
@@ -32,38 +74,76 @@ def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasIma
 
 
 def moverBarcos(matrizGuardar,filas,columnas):
+    """
+    Mueve los barcos en la matriz en la dirección a donde apuntan, mientras no choque con nada
+     y si un barco no se puede mover, se dara la vuelta.
+
+    Args:
+        matrizGuardar (list): Matriz del juego donde cada elemento puede ser None o una referencia a una imagen.
+        filas (int): Número total de filas en la matriz.
+        columnas (int): Número total de columnas en la matriz.
+        direccion (str): Dirección del movimiento ('derecha', 'izquierda', 'arriba', 'abajo').
+
+    Returns:
+        None
+    """
+    derecha=[lstTodasImagenes[0],lstTodasImagenes[4],lstTodasImagenes[12]]
+    arriba=[lstTodasImagenes[1],lstTodasImagenes[5],lstTodasImagenes[13]]
+    izquierda=[lstTodasImagenes[2],lstTodasImagenes[6],lstTodasImagenes[14]]
+    abajo=[lstTodasImagenes[3],lstTodasImagenes[7],lstTodasImagenes[15]]
+    imgInicial=[lstTodasImagenes[0],lstTodasImagenes[4],lstTodasImagenes[12],
+                lstTodasImagenes[1],lstTodasImagenes[5],lstTodasImagenes[13],
+                lstTodasImagenes[2],lstTodasImagenes[6],lstTodasImagenes[14],
+                lstTodasImagenes[3],lstTodasImagenes[7],lstTodasImagenes[15]]
+    destructor=['img/b1.png','img/b1_rotated_90.png','img/b1_rotated_180.png','img/b1_rotated_270.png']
+    crusero=[['img/b21.png','img/b21_rotated_90.png','img/b21_rotated_180.png','img/b21_rotated_270.png'],
+            ['img/b22.png','img/b22_rotated_90.png','img/b22_rotated_180.png','img/b22_rotated_270.png']]
+    acorazado=[['img/b31.png','img/b31_rotated_90.png','img/b31_rotated_180.png','img/b31_rotated_270.png'],
+                ['img/b32.png','img/b32_rotated_90.png','img/b32_rotated_180.png','img/b32_rotated_270.png'],
+                ['img/b33.png','img/b33_rotated_90.png','img/b33_rotated_180.png','img/b33_rotated_270.png']]
     for x in range(filas):
         for y in range(columnas):
-            if matrizGuardar[x][y]==lstTodasImagenes[0]:
-                if y<9:
-                    if matrizGuardar[x][y]==None:
-                        pass
-            # elif matrizGuardar[x][y]==lstTodasImagenes[1]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[2]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[3]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[4]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[5]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[6]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[7]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[8]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[9]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[10]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[11]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[12]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[13]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[14]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[15]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[16]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[17]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[18]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[19]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[20]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[21]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[22]
-            # elif matrizGuardar[x][y]==lstTodasImagenes[23]
-            # pass
+            elementoActual = matrizGuardar[x][y]
+            if elementoActual in imgInicial:
+                dx, dy = 0, 0
+                if elementoActual in derecha and y < columnas - 1:
+                    dx, dy = 0, 1
+                elif elementoActual in izquierda and y > 0:
+                    dx, dy = 0, -1
+                elif elementoActual in arriba and x > 0:
+                    dx, dy = -1, 0
+                elif elementoActual in abajo and x < filas - 1:
+                    dx, dy = 1, 0
+
+                nuevaX, nuevaY = x + dx, y + dy
+
+                if 0 <= nuevaX < filas and 0 <= nuevaY < columnas and matrizGuardar[nuevaX][nuevaY] is None:
+                    # Mover el elemento
+                    matrizGuardar[nuevaX][nuevaY] = elementoActual
+                    matrizGuardar[x][y] = None
+
+    for x in range(filas):
+        for y in range(columnas - 1, -1, -1):
+            if matrizGuardar[x][y] is not None and ((matrizGuardar[x][y] in derecha and y == columnas - 1) or
+                                                    (matrizGuardar[x][y] in izquierda and y == 0)):
+                # Suponiendo que el barco tiene un tamaño fijo de 3 para este ejemplo
+                if y + 2 < columnas and all(matrizGuardar[x][y + offset] is not None for offset in range(3)):
+                    # Invertir las posiciones de las imágenes
+                    matrizGuardar[x][y], matrizGuardar[x][y + 2] = matrizGuardar[x][y + 2], matrizGuardar[x][y]
 
 def terminarPartida(vMenu,aciertos):
+    """
+    Determina quien es el ganador o si la partida es un empate
+
+    Args:
+        vMenu (Tk): La ventana principal del juego que será cerrada al finalizar la partida.
+        aciertos (list): Lista de dos elementos, donde cada sublista contiene los aciertos registrados
+                         por cada jugador. Por ejemplo, aciertos[0] para el Jugador 1 y aciertos[1] para el Jugador 2.
+
+    Returns:
+        None: La función muestra cuadros de diálogo para interactuar con el usuario y no retorna ningún valor.
+
+    """
     if fase==5:
         if len(aciertos[0])==len(aciertos[1]):
                 messagebox.showinfo("Partida Terminada","se ha declarado empate")
@@ -86,6 +166,25 @@ def terminarPartida(vMenu,aciertos):
             vMenu.destroy()
 
 def disparo(vtnMenu,x, y, mtrBotones,matrizGuardar,filas,columnas,aciertos,lstJuga):
+    """
+    Realiza un disparo en la posición especificada del tablero y actualiza el estado del juego 
+    basándose en si el disparo acertó o falló.
+
+    Args:
+        vtnMenu (Tk): Ventana principal del juego.
+        x (int): Índice de fila en el tablero donde se realiza el disparo.
+        y (int): Índice de columna en el tablero donde se realiza el disparo.
+        mtrBotones (list): Matriz de botones del tablero que se actualizará visualmente según el resultado del disparo.
+        matrizGuardar (list): Matriz que almacena el estado actual del juego, usada para verificar si un disparo acierta.
+        filas (int): Número total de filas en la matriz de juego.
+        columnas (int): Número total de columnas en la matriz de juego.
+        aciertos (list): Lista de listas donde se registran los aciertos de cada jugador.
+        lstJuga (list): Lista de jugadores, usada para actualizar la puntuación y proporcionar feedback.
+
+    Returns:
+        None
+    """
+
     global fase
     disparoAcertado=False
     if matrizGuardar[x][y] in lstTodasImagenes:
@@ -130,6 +229,24 @@ def disparo(vtnMenu,x, y, mtrBotones,matrizGuardar,filas,columnas,aciertos,lstJu
 
 
 def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2,matrizGuardar,matrizGuardar2,lstAciertos=[]):
+    """
+    Inicia la fase de combate del juego, actualizando la interfaz y preparando el juego para que los jugadores comiencen a interactuar en la fase de batalla.
+
+    Args:
+        vMenu (Tk): Ventana principal del juego donde se configurarán y mostrarán los elementos de la interfaz.
+        lstJugadores (list): Lista que contiene la información de los jugadores, incluyendo nombres y puntuaciones.
+        mtrBotones (list): Matriz de botones para el jugador 1 que será reconfigurada para la fase de combate.
+        mtrImagenes (list): Matriz de imágenes para el jugador 1 que refleja el estado visual actual de los botones.
+        mtrBotones2 (list): Matriz de botones para el jugador 2 que será reconfigurada para la fase de combate.
+        mtrImagenes2 (list): Matriz de imágenes para el jugador 2 que refleja el estado visual actual de los botones.
+        matrizGuardar (list): Matriz de control para guardar el estado del juego del jugador 1.
+        matrizGuardar2 (list): Matriz de control para guardar el estado del juego del jugador 2.
+        lstAciertos (list, optional): Lista de aciertos registrados en el juego, inicialmente vacía si no se provee.
+
+    Returns:
+        None
+    """
+
     global fase
     fase=2
     limpiarVentana(vMenu)
@@ -153,7 +270,7 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     frameJugador2=Frame(vMenu,borderwidth=2,relief="solid",width=600,height=400)
     frameJugador2.place(x=650, y=140)
     #Botones
-    btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos,lstTodasImagenes))
+    btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos))
     btnGuardar.place(x=320, y=600)
 
     btnEmpate=Button(vMenu,text="Terminar Partida",font=("Arial", 12),command=lambda:terminarPartida(vMenu,lstAciertos))
@@ -171,11 +288,30 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
    
 
 def barcoSeleccionado(n):
+    """
+    Establece el tipo de barco seleccionado en una variable global para uso en otras funciones del juego.
+
+    Args:
+        n (int): Número que representa el tipo de barco seleccionado.
+
+    Returns:
+        None
+    """
+
     global barco
     barco=n
 
 
 def orientacionSeleccionada(btnOrientacion):
+    """
+    Cambia la orientación global de los barcos y actualiza el texto del botón de orientación para reflejar la nueva orientación.
+
+    Args:
+        btnOrientacion (Tk.Button): Botón en la interfaz de usuario que muestra y cambia la orientación de los barcos.
+
+    Returns:
+        None
+    """
     global orientacion
     if orientacion==0:
         orientacion+=1
@@ -191,9 +327,32 @@ def orientacionSeleccionada(btnOrientacion):
         btnOrientacion.configure(text=">")
 
 def actualizarImagen(imagen,x,y,mtrImg):
+    """
+    Actualiza la matriz de imágenes con una nueva imagen en una posición específica.
+
+    Args:
+        imagen (str): La ruta de la imagen o el objeto de imagen que se colocará en la matriz.
+        x (int): Índice de fila en la matriz donde se actualizará la imagen.
+        y (int): Índice de columna en la matriz donde se actualizará la imagen.
+        mtrImg (list): Matriz de imágenes que será actualizada.
+
+    Returns:
+        None
+    """
+
     mtrImg[x][y]=imagen
 
 def rotarImagen(imagen):
+    """
+    Rota una imagen dada según la orientación global actual del barco en el juego.
+
+    Args:
+        imagen (PIL.Image): La imagen del barco que será rotada.
+
+    Returns:
+        PIL.ImageTk.PhotoImage: La imagen rotada convertida en un formato utilizable por la interfaz gráfica Tkinter.
+    """
+
     global barco,orientacion
     imagenRotada=imagen.rotate(orientacion*90)
     imagen=ImageTk.PhotoImage(imagenRotada)
@@ -202,6 +361,28 @@ def rotarImagen(imagen):
 
 
 def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2):
+    """
+    Coloca barcos en la matriz gráfica según la orientación y el tipo de barco seleccionado,
+    manejando los diferentes tamaños y tipos de barcos durante la fase de preparación del juego.
+
+    Args:
+        x (int): Índice de fila en la matriz donde el jugador intenta colocar un barco.
+        y (int): Índice de columna en la matriz donde el jugador intenta colocar un barco.
+        mtrBtn (list): Matriz de botones de la interfaz gráfica donde se mostrarán los barcos.
+        mtrImg (list): Matriz de imágenes que refleja el estado visual actual de los botones.
+        filas (int): Número total de filas en la matriz de juego.
+        columnas (int): Número total de columnas en la matriz de juego.
+        mtrOtrosBtn (list): Matriz de botones del oponente, utilizada para controlar la interacción durante el juego.
+        mtrOtrasImg (list): Matriz de imágenes del oponente.
+        vtnMenu (Tk): Ventana principal del juego.
+        lstJugadores (list): Lista que contiene la información de los jugadores.
+        matrizGuardar (list): Matriz de control para guardar el estado del juego del jugador actual.
+        matrizGuardar2 (list): Matriz de control para guardar el estado del juego del oponente.
+
+    Returns:
+        list: Devuelve la matriz de botones actualizada después de colocar los barcos.
+    """
+
     global barco,orientacion,imgAcorazado3,imgAcorazado2,imgAcorazado
     global imgCrusero,imgCrusero2,imgDestructor,barco1,barco2,barco3
     if orientacion==0:
@@ -391,6 +572,28 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
 
 
 def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos=[]):
+    """
+    Configura una matriz de botones dentro de un marco específico para la interfaz gráfica del juego, 
+    con comportamientos dependientes del estado del juego. 
+
+    Args:
+        mtrBtn (list): Matriz de botones que será reconfigurada y devuelta.
+        mtrImagenes (list): Matriz de imágenes correspondiente a los estados visuales de los botones.
+        frame (Tk.Frame): Marco de la interfaz de usuario donde se colocarán los botones.
+        filas (int): Número de filas para la matriz de botones.
+        columnas (int): Número de columnas para la matriz de botones.
+        mtrOtrosBotones (list): Matriz de botones correspondiente al otro jugador, utilizada en interacciones cruzadas.
+        mtrOtrasImagenes (list): Matriz de imágenes correspondiente al otro jugador.
+        vtnMenu (Tk): Ventana principal del juego.
+        lstJugadores (list): Lista que contiene la información de los jugadores.
+        matrizGuardar (list): Matriz de control para guardar el estado del juego para el jugador actual.
+        matrizGuardar2 (list): Matriz de control para guardar el estado del juego para el otro jugador.
+        lstAciertos (list, optional): Lista de aciertos registrados en el juego, por defecto es una lista vacía.
+
+    Returns:
+        list: Matriz de botones configurada según los parámetros y el estado del juego.
+    """
+
     mtrBtn=[[None for _ in range(columnas)] for _ in range(filas)]
     for e in range(filas):
         for i in range(columnas):
@@ -406,6 +609,24 @@ def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtr
     
 
 def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones,mtrBotones2,mtrImagenes,mtrImagenes2,matrizGuardar,matrizGuardar2):
+    """
+    Inicializa y coloca objetos en la interfaz gráfica del juego, incluyendo etiquetas, botones y marcos para cada jugador,
+    y prepara las matrices de imágenes y botones para el juego.
+
+    Args:
+        vMenu (Tk): La ventana principal del juego donde se colocarán los objetos.
+        matriz (list): Matriz utilizada para determinar dimensiones en algunas estructuras de datos.
+        lstJugadores (list): Lista de jugadores, donde cada jugador es representado por una lista de datos (nombre, id, puntuación).
+        mtrBotones (list): Lista inicial de botones para el jugador 1 que puede ser modificada durante la ejecución.
+        mtrBotones2 (list): Lista inicial de botones para el jugador 2 que puede ser modificada durante la ejecución.
+        mtrImagenes (list): Lista inicial de imágenes para el jugador 1 que puede ser modificada durante la ejecución.
+        mtrImagenes2 (list): Lista inicial de imágenes para el jugador 2 que puede ser modificada durante la ejecución.
+        matrizGuardar (list): Matriz para almacenar datos del juego para el jugador 1.
+        matrizGuardar2 (list): Matriz para almacenar datos del juego para el jugador 2.
+
+    Returns:
+        None: Esta función no retorna ningún valor pero realiza la configuración inicial de la interfaz del usuario.
+    """
     limpiarVentana(vMenu)
     
     #labels

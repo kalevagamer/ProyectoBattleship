@@ -3,6 +3,18 @@ from tkinter import messagebox
 import json
 
 def escribirDatos(ven,archivo,mtrzImg,mtrzImg2,lstJ,lstA):
+    """
+    Guarda los datos de la partida en archivos JSON.
+
+    Args:
+        ven (Tk): Ventana principal desde la cual se llama la función.
+        archivo (str): Nombre del archivo donde se guardarán los datos de la partida.
+        mtrzImg (list): Matriz de imágenes del jugador 1.
+        mtrzImg2 (list): Matriz de imágenes del jugador 2.
+        lstJ (list): Lista de jugadores.
+        lstA (list): Lista de aciertos.
+
+    """
     
     if archivo.strip()=="":
         
@@ -24,6 +36,20 @@ def escribirDatos(ven,archivo,mtrzImg,mtrzImg2,lstJ,lstA):
         ven.destroy()
             
 def guardarPartida(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos):
+    """
+    Crea una ventana para que el usuario escriba el nombre de la partida y la guarde.
+
+    Args:
+        vMenu (Tk): Ventana principal desde la cual se crea la ventana secundaria.
+        lstJugadores (list): Lista de jugadores.
+        mtrImagenes (list): Matriz de imágenes del jugador 1.
+        mtrImagenes2 (list): Matriz de imágenes del jugador 2.
+        lstAciertos (list): Lista de aciertos.
+
+    Returns:
+        Toplevel: Ventana secundaria donde se puede ingresar el nombre de la partida.
+
+    """
     ven=Toplevel(vMenu)
     ven.title("Battelship")
     ven.iconbitmap("img/bt.ico")
