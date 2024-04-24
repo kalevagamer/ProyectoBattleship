@@ -4,8 +4,8 @@ import crearMatriz
 
 def agregarJugadores(ven,lst,N1,N2,NN1,NN2):
     if N1.strip() and N2.strip() and NN1.strip() and NN2.strip():
-        lst.append((N1,NN1,0))
-        lst.append((N2,NN2,0))
+        lst.append([N1,NN1,0])
+        lst.append([N2,NN2,0])
         ven.destroy()
     else:
         messagebox.showerror("Error","Alguna de las celdas esta vacia")

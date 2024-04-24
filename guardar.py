@@ -8,7 +8,7 @@ def escribirDatos(ven,archivo,mtrzImg,mtrzImg2,lstJ,lstA):
         
         messagebox.showerror("Error","No puedes guardar un archivo sin nombre")
     else:
-        auxArchivo=f"{str(archivo).strip()}.txt"
+        auxArchivo=f"saves/{str(archivo).strip()}.txt"
         with open(auxArchivo, 'w') as f:
             json.dump(mtrzImg, f)
         auxArchivo=f"saves/{str(archivo).strip()}-players.txt"

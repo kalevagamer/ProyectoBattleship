@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import guardar
 from PIL import Image,ImageTk
+import time
 
 def apagarBotones(mtrBotones):
     for e in mtrBotones:
@@ -24,21 +25,109 @@ def limpiarVentana(ven):
     
 
 def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasImagenes):
-    # mtrOrientacion=orientar(mtrImagenes,lstTodasImagenes)
-    # mtrOrientacion2=orientar(mtrImagenes2,lstTodasImagenes)
     vMenu.attributes("-disabled", True)
     vntGuardar=guardar.guardarPartida(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos)
     vMenu.wait_window(vntGuardar)
     vMenu.attributes("-disabled", False)
 
-def empate(vMenu):
-    respuesta=messagebox.askyesno("Empate","¿desean declarar empate?")
-    if respuesta:
-        messagebox.showinfo("Partida Terminada","se ha declarado empate")
-        vMenu.destroy()
 
-def disparo(e, i, mtrBotones,matrizGuardar,filas,columnas):
-    print("hola")
+def moverBarcos(matrizGuardar,filas,columnas):
+    for x in range(filas):
+        for y in range(columnas):
+            if matrizGuardar[x][y]==lstTodasImagenes[0]:
+                if y<9:
+                    if matrizGuardar[x][y]==None:
+                        pass
+            # elif matrizGuardar[x][y]==lstTodasImagenes[1]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[2]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[3]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[4]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[5]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[6]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[7]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[8]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[9]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[10]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[11]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[12]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[13]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[14]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[15]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[16]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[17]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[18]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[19]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[20]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[21]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[22]
+            # elif matrizGuardar[x][y]==lstTodasImagenes[23]
+            # pass
+
+def terminarPartida(vMenu,aciertos):
+    if fase==5:
+        if len(aciertos[0])==len(aciertos[1]):
+                messagebox.showinfo("Partida Terminada","se ha declarado empate")
+        elif len(aciertos[0])>len(aciertos[1]):
+            messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
+        elif len(aciertos[0])<len(aciertos[1]):
+            messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
+        vMenu.destroy()
+    elif fase==3:
+        messagebox.showinfo("Terminar Partida","No se puede terminar la partida si Jugador 2 no ha terminado su turno")
+    else:
+        respuesta=messagebox.askyesno("Partida","¿desean terminar la partida?")
+        if respuesta:
+            if len(aciertos[0])==len(aciertos[1]):
+                messagebox.showinfo("Partida Terminada","se ha declarado empate")
+            elif len(aciertos[0])>len(aciertos[1]):
+                messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
+            elif len(aciertos[0])<len(aciertos[1]):
+                messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
+            vMenu.destroy()
+
+def disparo(vtnMenu,x, y, mtrBotones,matrizGuardar,filas,columnas,aciertos,lstJuga):
+    global fase
+    disparoAcertado=False
+    if matrizGuardar[x][y] in lstTodasImagenes:
+        mtrBotones[x][y].config(background="red")
+        matrizGuardar[x][y]=f"{matrizGuardar[x][y]} "
+        if fase==3:
+            messagebox.showinfo("Jugador 1","Le diste!")
+            lstJuga[0][2]+=1
+            aciertos[0].append((x,y))
+        else:
+            messagebox.showinfo("Jugador 2","Le diste!")
+            lstJuga[1][2]+=1
+            aciertos[1].append((x,y))
+        disparoAcertado=True
+    elif matrizGuardar[x][y]==None:
+        if fase==3:
+            messagebox.showinfo("Jugador 1","Fallaste!")
+        else:
+            messagebox.showinfo("Jugador 2","Fallaste!")
+    if disparoAcertado:
+        aux=len(aciertos[0])
+        aux2=len(aciertos[1])
+        if fase==3:
+            
+            if aux==20:
+                messagebox.showinfo("Jugador 2","ULTIMO TURNO!")
+            else:
+                messagebox.showinfo("Jugador 2","Tu turno!")
+                fase=4
+            
+        else:
+            if aux==20 or aux2==20:
+                fase=5
+                terminarPartida(vtnMenu,aciertos)
+            else:
+                moverBarcos(matrizGuardar,filas,columnas)
+                messagebox.showinfo("Atencion!","Los barcos se han movido!")
+                messagebox.showinfo("Jugador 1", "Tu turno!")
+                fase=3
+
+
+
 
 def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2,matrizGuardar,matrizGuardar2,lstAciertos=[]):
     global fase
@@ -67,25 +156,17 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos,lstTodasImagenes))
     btnGuardar.place(x=320, y=600)
 
-    btnEmpate=Button(vMenu,text="Declarar Empate",font=("Arial", 12),command=lambda:empate(vMenu))
+    btnEmpate=Button(vMenu,text="Terminar Partida",font=("Arial", 12),command=lambda:terminarPartida(vMenu,lstAciertos))
     btnEmpate.place(x=500, y=600)
 
     f=len(mtrImagenes)
     c=len(mtrImagenes[0])
-    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
-    mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
-    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
-    lstTodasImagenes=['img/b1.png','img/b1_rotated_90.png','img/b1_rotated_180.png','img/b1_rotated_270.png',
-                      'img/b21.png','img/b21_rotated_90.png','img/b21_rotated_180.png','img/b21_rotated_270.png',
-                      'img/b22.png','img/b22_rotated_90.png','img/b22_rotated_180.png','img/b22_rotated_270.png',
-                      'img/b31.png','img/b31_rotated_90.png','img/b31_rotated_180.png','img/b31_rotated_270.png',
-                      'img/b32.png','img/b32_rotated_90.png','img/b32_rotated_180.png','img/b32_rotated_270.png',
-                      'img/b33.png','img/b33_rotated_90.png','img/b33_rotated_180.png','img/b33_rotated_270.png']
-    # if lstAciertos:
-    #     mtrImagenes=orientarReanudar(lstTodasImagenes,mtrImagenes)
-    #     mtrImagenes2=orientarReanudar(lstTodasImagenes,mtrImagenes2)
-
-    messagebox.showinfo("Jugador 1", "Tu turno!")
+    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos)
+    mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos)
+    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos)
+    
+    
+    
 
    
 
@@ -309,7 +390,7 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
     
 
 
-def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2):
+def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos=[]):
     mtrBtn=[[None for _ in range(columnas)] for _ in range(filas)]
     for e in range(filas):
         for i in range(columnas):
@@ -320,7 +401,7 @@ def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtr
                 button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBtn,mtrImagenes,filas,
                                                                  columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2))
             elif fase==2:
-                button.config(image=mtrImagenes[e][i],command=lambda e=e, i=i:disparo(e, i, mtrBtn,matrizGuardar,filas,columnas))
+                button.config(image=mtrImagenes[e][i],command=lambda e=e, i=i:disparo(vtnMenu,e, i, mtrBtn,matrizGuardar,filas,columnas,lstAciertos,lstJugadores))
     return mtrBtn
     
 
@@ -397,3 +478,9 @@ barco1=0
 barco2=0
 barco3=0
 orientacion=0
+lstTodasImagenes=['img/b1.png','img/b1_rotated_90.png','img/b1_rotated_180.png','img/b1_rotated_270.png',
+                      'img/b21.png','img/b21_rotated_90.png','img/b21_rotated_180.png','img/b21_rotated_270.png',
+                      'img/b22.png','img/b22_rotated_90.png','img/b22_rotated_180.png','img/b22_rotated_270.png',
+                      'img/b31.png','img/b31_rotated_90.png','img/b31_rotated_180.png','img/b31_rotated_270.png',
+                      'img/b32.png','img/b32_rotated_90.png','img/b32_rotated_180.png','img/b32_rotated_270.png',
+                      'img/b33.png','img/b33_rotated_90.png','img/b33_rotated_180.png','img/b33_rotated_270.png']

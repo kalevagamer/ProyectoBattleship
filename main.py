@@ -13,7 +13,7 @@ matrizImagenes2=[]
 matrizGuardar=[]
 matrizGuardar2=[]
 lstJugadores=[]
-lstAciertos=[]
+lstAciertos=[[],[]]
 
 def bloquearVetana(vtn):
     vtn.attributes("-disabled", True)
