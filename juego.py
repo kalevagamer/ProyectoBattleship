@@ -8,13 +8,12 @@ def apagarBotones(mtrBotones):
         for i in e:
             i.config(state="disabled",image='')
 
-def encenderBotones(mtrBotones,mtrImagenes):
+def encenderBotones(mtrBotones):
     x=0
     for e in mtrBotones:
         y=0
         for i in e:
-            img=mtrImagenes[x][y]
-            i.config(state="normal",image=img)
+            i.config(state="normal")
             y+=1
         x+=1
 
@@ -22,121 +21,7 @@ def limpiarVentana(ven):
     for e in ven.winfo_children():
         e.destroy()
 
-# def orientarReanudar(lstTodasImg,mtrzImg):
-#     e=len(mtrzImg)
-#     i=len(mtrzImg[0])
-#     mtrz=[[None for _ in range(i)] for _ in range(e)]
-#     for x in range(e):
-#         for y in range(i):
-#             if mtrzImg[x][y]==lstTodasImg[0]:
-#                 mtrz[x][y]==lstTodasImg[0]
-#             elif mtrz[x][y]==lstTodasImg[1]: 
-#                 mtrz[x][y]=lstTodasImg[1]
-#             elif mtrz[x][y]==lstTodasImg[2]: 
-#                 mtrz[x][y]=lstTodasImg[2]
-#             elif mtrz[x][y]==lstTodasImg[3]: 
-#                 mtrz[x][y]=lstTodasImg[3]
-#             elif mtrz[x][y]==lstTodasImg[4]: 
-#                 mtrz[x][y]=lstTodasImg[4]
-#             elif mtrz[x][y]==lstTodasImg[5]: 
-#                 mtrz[x][y]=lstTodasImg[5]
-#             elif mtrz[x][y]==lstTodasImg[6]: 
-#                 mtrz[x][y]=lstTodasImg[6]
-#             elif mtrz[x][y]==lstTodasImg[7]: 
-#                 mtrz[x][y]=lstTodasImg[7]
-#             elif mtrz[x][y]==lstTodasImg[8]: 
-#                 mtrz[x][y]=lstTodasImg[8]
-#             elif mtrz[x][y]==lstTodasImg[9]:
-#                 mtrz[x][y]=lstTodasImg[9]
-#             elif mtrz[x][y]==lstTodasImg[10]:
-#                 mtrz[x][y]=lstTodasImg[10]
-#             elif mtrz[x][y]==lstTodasImg[11]:
-#                 mtrz[x][y]=lstTodasImg[11]
-#             elif mtrz[x][y]==lstTodasImg[12]:
-#                 mtrz[x][y]=lstTodasImg[12]
-#             elif mtrz[x][y]==lstTodasImg[13]:
-#                 mtrz[x][y]=lstTodasImg[13]
-#             elif mtrz[x][y]==lstTodasImg[14]:
-#                 mtrz[x][y]=lstTodasImg[14]
-#             elif mtrz[x][y]==lstTodasImg[15]:
-#                 mtrz[x][y]=lstTodasImg[15]
-#             elif mtrz[x][y]==lstTodasImg[16]:
-#                 mtrz[x][y]=lstTodasImg[16]
-#             elif mtrz[x][y]==lstTodasImg[17]:
-#                 mtrz[x][y]=lstTodasImg[17]
-#             elif mtrz[x][y]==lstTodasImg[18]:
-#                 mtrz[x][y]=lstTodasImg[18]
-#             elif mtrz[x][y]==lstTodasImg[19]:
-#                 mtrz[x][y]=lstTodasImg[19]
-#             elif mtrz[x][y]==lstTodasImg[20]:
-#                 mtrz[x][y]=lstTodasImg[20]
-#             elif mtrz[x][y]==lstTodasImg[21]:
-#                 mtrz[x][y]=lstTodasImg[21]
-#             elif mtrz[x][y]==lstTodasImg[22]:
-#                 mtrz[x][y]=lstTodasImg[22]
-#             elif mtrz[x][y]==lstTodasImg[23]:
-#                 mtrz[x][y]=lstTodasImg[23]
     
-#     return mtrz
-
-
-# def orientar(mtrzImg,lstTodasImg):
-#     e=len(mtrzImg)
-#     i=len(mtrzImg[0])
-#     mtrz=[[None for _ in range(i)] for _ in range(e)]
-#     for x in range(e):
-#         for y in range(i):
-#             img=mtrzImg[x][y]
-#             if img==lstTodasImg[0]:
-#                 mtrz[x][y]=0
-#             elif img==lstTodasImg[1]:
-#                 mtrz[x][y]=1
-#             elif img==lstTodasImg[2]:
-#                 mtrz[x][y]=2
-#             elif img==lstTodasImg[3]:
-#                 mtrz[x][y]=3
-#             elif img==lstTodasImg[4]:
-#                 mtrz[x][y]=4
-#             elif img==lstTodasImg[5]:
-#                 mtrz[x][y]=5
-#             elif img==lstTodasImg[6]:
-#                 mtrz[x][y]=6
-#             elif img==lstTodasImg[7]:
-#                 mtrz[x][y]=7
-#             elif img==lstTodasImg[8]:
-#                 mtrz[x][y]=8
-#             elif img==lstTodasImg[9]:
-#                 mtrz[x][y]=9
-#             elif img==lstTodasImg[10]:
-#                 mtrz[x][y]=10
-#             elif img==lstTodasImg[11]:
-#                 mtrz[x][y]=11
-#             elif img==lstTodasImg[12]:
-#                 mtrz[x][y]=12
-#             elif img==lstTodasImg[13]:
-#                 mtrz[x][y]=13
-#             elif img==lstTodasImg[14]:
-#                 mtrz[x][y]=14
-#             elif img==lstTodasImg[15]:
-#                 mtrz[x][y]=15
-#             elif img==lstTodasImg[16]:
-#                 mtrz[x][y]=16
-#             elif img==lstTodasImg[17]:
-#                 mtrz[x][y]=17
-#             elif img==lstTodasImg[18]:
-#                 mtrz[x][y]=18
-#             elif img==lstTodasImg[19]:
-#                 mtrz[x][y]=19
-#             elif img==lstTodasImg[20]:
-#                 mtrz[x][y]=20
-#             elif img==lstTodasImg[21]:
-#                 mtrz[x][y]=21
-#             elif img==lstTodasImg[22]:
-#                 mtrz[x][y]=22
-#             elif img==lstTodasImg[23]:
-#                 mtrz[x][y]=23
-            
-#     return mtrz
 
 def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasImagenes):
     # mtrOrientacion=orientar(mtrImagenes,lstTodasImagenes)
@@ -152,7 +37,7 @@ def empate():
 def disparo(e, i, mtrBotones,mtrImagenes,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes):
     print("hola")
 
-def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2,lstAciertos=[]):
+def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2,matrizGuardar,matrizGuardar2,lstAciertos=[]):
     global fase
     fase=2
     limpiarVentana(vMenu)
@@ -176,7 +61,7 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     frameJugador2=Frame(vMenu,borderwidth=2,relief="solid",width=600,height=400)
     frameJugador2.place(x=650, y=140)
     #Botones
-    btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasImagenes))
+    btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos,lstTodasImagenes))
     btnGuardar.place(x=320, y=600)
 
     btnEmpate=Button(vMenu,text="Declarar Empate",font=("Arial", 12),command=lambda:empate())
@@ -184,15 +69,15 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
 
     f=len(mtrImagenes)
     c=len(mtrImagenes[0])
-    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores)
-    mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores)
-    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores)
-    lstTodasImagenes=['b1.png','b1_rotated_90.png','b1_rotated_180.png','b1_rotated_270.png',
-                      'b21.png','b21_rotated_90.png','b21_rotated_180.png','b21_rotated_270.png',
-                      'b22.png','b22_rotated_90.png','b22_rotated_180.png','b22_rotated_270.png',
-                      'b31.png','b31_rotated_90.png','b31_rotated_180.png','b31_rotated_270.png',
-                      'b32.png','b32_rotated_90.png','b32_rotated_180.png','b32_rotated_270.png',
-                      'b33.png','b33_rotated_90.png','b33_rotated_180.png','b33_rotated_270.png']
+    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
+    mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
+    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
+    lstTodasImagenes=['img/b1.png','img/b1_rotated_90.png','img/b1_rotated_180.png','img/b1_rotated_270.png',
+                      'img/b21.png','img/b21_rotated_90.png','img/b21_rotated_180.png','img/b21_rotated_270.png',
+                      'img/b22.png','img/b22_rotated_90.png','img/b22_rotated_180.png','img/b22_rotated_270.png',
+                      'img/b31.png','img/b31_rotated_90.png','img/b31_rotated_180.png','img/b31_rotated_270.png',
+                      'img/b32.png','img/b32_rotated_90.png','img/b32_rotated_180.png','img/b32_rotated_270.png',
+                      'img/b33.png','img/b33_rotated_90.png','img/b33_rotated_180.png','img/b33_rotated_270.png']
     # if lstAciertos:
     #     mtrImagenes=orientarReanudar(lstTodasImagenes,mtrImagenes)
     #     mtrImagenes2=orientarReanudar(lstTodasImagenes,mtrImagenes2)
@@ -230,7 +115,7 @@ def rotarImagen(imagen):
 
 
 
-def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtnMenu,lstJugadores):
+def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2):
     global barco,orientacion,imgAcorazado3,imgAcorazado2,imgAcorazado
     global imgCrusero,imgCrusero2,imgDestructor,barco1,barco2,barco3
     if orientacion==0:
@@ -240,6 +125,7 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].config(image=img)
                 mtrBtn[x][y].image=img
                 barco1+=1
+                actualizarImagen('img/b1.png',x,y,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
         elif barco == 2 and y < columnas-1 and barco2<4:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x][y+1].cget('image')=='':
@@ -250,8 +136,11 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].image=img
                 mtrBtn[x][y+1].image=img2
                 barco2+=1
+                actualizarImagen('img/b22.png',x,y,matrizGuardar)
+                actualizarImagen('img/b21.png',x,y+1,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x,y+1,mtrImg)
+
         elif barco == 3 and y < columnas-2 and barco3<2:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x][y+1].cget('image')==''and mtrBtn[x][y+2].cget('image')=='':
                 img=rotarImagen(imgAcorazado3)
@@ -267,6 +156,9 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x,y+1,mtrImg)
                 actualizarImagen(img3,x,y+2,mtrImg)
+                actualizarImagen('img/b33.png',x,y,matrizGuardar)
+                actualizarImagen('img/b32.png',x,y+1,matrizGuardar)
+                actualizarImagen('img/b31.png',x,y+2,matrizGuardar)
     elif orientacion==1:
         if barco==1 and barco1<6:
             if mtrBtn[x][y].cget('image')=='':
@@ -275,6 +167,7 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].image=img
                 barco1+=1
                 actualizarImagen(img,x,y,mtrImg)
+                actualizarImagen('img/b1_rotated_90.png',x,y,matrizGuardar)
         elif barco == 2 and x>0 and barco2<4:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x-1][y].cget('image')=='':
                 img=rotarImagen(imgCrusero)
@@ -284,9 +177,11 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x-1][y].image=img
                 mtrBtn[x][y].image=img2
                 barco2+=1
+                actualizarImagen('img/b21_rotated_90.png',x-1,y,matrizGuardar)
+                actualizarImagen('img/b22_rotated_90.png',x,y,matrizGuardar)
                 actualizarImagen(img,x-1,y,mtrImg)
                 actualizarImagen(img2,x,y,mtrImg)
-            
+
         elif barco == 3 and x>1 and barco3<2:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x-1][y].cget('image')==''and mtrBtn[x-2][y].cget('image')=='':
                 img=rotarImagen(imgAcorazado3)
@@ -299,9 +194,13 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x-1][y].image=img2
                 mtrBtn[x-2][y].image=img3
                 barco3+=1
+                actualizarImagen('img/b33_rotated_90.png',x,y,matrizGuardar)
+                actualizarImagen('img/b32_rotated_90.png',x-1,y,matrizGuardar)
+                actualizarImagen('img/b31_rotated_90.png',x-2,y,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x-1,y,mtrImg)
                 actualizarImagen(img3,x-2,y,mtrImg)
+
 
     elif orientacion==2:
         if barco==1 and barco1<6:
@@ -310,6 +209,7 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].config(image=img)
                 mtrBtn[x][y].image=img
                 barco1+=1
+                actualizarImagen('img/b1_rotated_180.png',x,y,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
         elif barco == 2 and y > 0 and barco2<4:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x][y-1].cget('image')=='':
@@ -320,8 +220,11 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].image=img
                 mtrBtn[x][y-1].image=img2
                 barco2+=1
+                actualizarImagen('img/b22_rotated_180.png',x,y,matrizGuardar)
+                actualizarImagen('img/b21_rotated_180.png',x,y-1,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x,y-1,mtrImg)
+
         elif barco == 3 and y > 1 and barco3<2:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x][y-1].cget('image')==''and mtrBtn[x][y-2].cget('image')=='':
                 img=rotarImagen(imgAcorazado3)
@@ -334,10 +237,12 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y-1].image=img2
                 mtrBtn[x][y-2].image=img3
                 barco3+=1
+                actualizarImagen('img/b33_rotated_180.png',x,y,matrizGuardar)
+                actualizarImagen('img/b32_rotated_180.png',x,y-1,matrizGuardar)
+                actualizarImagen('img/b31_rotated_180.png',x,y-2,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x,y-1,mtrImg)
                 actualizarImagen(img3,x,y-2,mtrImg)
-
 
     elif orientacion==3:
         if barco==1 and barco1<6:
@@ -346,6 +251,7 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].config(image=img)
                 mtrBtn[x][y].image=img
                 barco1+=1
+                actualizarImagen('img/b1_rotated_270.png',x,y,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
         elif barco == 2 and x < filas-1 and barco2<4:
             if mtrBtn[x][y].cget('image')==''and mtrBtn[x+1][y].cget('image')=='':
@@ -356,6 +262,8 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 mtrBtn[x][y].image=img
                 mtrBtn[x+1][y].image=img2
                 barco2+=1
+                actualizarImagen('img/b22_rotated_270.png',x,y,matrizGuardar)
+                actualizarImagen('img/b21_rotated_270.png',x+1,y,matrizGuardar)
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x+1,y,mtrImg)
         elif barco == 3 and x < filas-2 and barco3<2:
@@ -373,6 +281,9 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
                 actualizarImagen(img,x,y,mtrImg)
                 actualizarImagen(img2,x+1,y,mtrImg)
                 actualizarImagen(img3,x+2,y,mtrImg)
+                actualizarImagen('img/b33_rotated_270.png',x,y,matrizGuardar)
+                actualizarImagen('img/b32_rotated_270.png',x+1,y,matrizGuardar)
+                actualizarImagen('img/b31_rotated_270.png',x+2,y,matrizGuardar)
 
     if barco1+barco2+barco3==12:
         global fase
@@ -386,16 +297,14 @@ def colocarBarcos(x, y, mtrBtn,mtrImg,filas,columnas,mtrOtrosBtn,mtrOtrasImg,vtn
             barco3=0
             messagebox.showinfo("Jugador 2","Tu turno de colocar, recuerda que tienes 6 Destructores, 4 Cruceros y 2 Acorazados")
             fase+=1
-            encenderBotones(mtrOtrosBtn,mtrOtrasImg)
+            encenderBotones(mtrOtrosBtn)
         elif fase==1:
-            apagarBotones(mtrBtn)
-            encenderBotones(mtrOtrosBtn,mtrOtrasImg)
-            empezarJuego(vtnMenu,lstJugadores,mtrOtrosBtn,mtrOtrasImg,mtrBtn,mtrImg)
+            empezarJuego(vtnMenu,lstJugadores,mtrOtrosBtn,mtrOtrasImg,mtrBtn,mtrImg,matrizGuardar,matrizGuardar2)
         
     
 
 
-def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores):
+def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2):
     mtrBtn=[[None for _ in range(columnas)] for _ in range(filas)]
     for e in range(filas):
         for i in range(columnas):
@@ -404,14 +313,14 @@ def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtr
             mtrBtn[e][i]=button
             if fase==0:
                 button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBtn,mtrImagenes,filas,
-                                                                 columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores))
+                                                                 columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2))
             elif fase==2:
                 button.config(image=mtrImagenes[e][i],command=lambda e=e, i=i:disparo(e, i, mtrBtn,mtrImagenes,filas,
-                                                                 columnas,mtrOtrosBotones,mtrOtrasImagenes))
+                                                                 columnas,mtrOtrosBotones,mtrOtrasImagenes,matrizGuardar,matrizGuardar2))
     return mtrBtn
     
 
-def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones,mtrBotones2,mtrImagenes,mtrImagenes2):
+def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones,mtrBotones2,mtrImagenes,mtrImagenes2,matrizGuardar,matrizGuardar2):
     limpiarVentana(vMenu)
     
     #labels
@@ -452,9 +361,11 @@ def crearObjetos(vMenu,matriz,lstJugadores,mtrBotones,mtrBotones2,mtrImagenes,mt
     c=len(matriz[0])//2
     mtrImagenes=[[None for _ in range(c)] for _ in range(f)]
     mtrImagenes2=[[None for _ in range(c)] for _ in range(f)]
-    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores)
-    mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores)
-    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores)
+    matrizGuardar=[[None for _ in range(c)] for _ in range(f)]
+    matrizGuardar2=[[None for _ in range(c)] for _ in range(f)]
+    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
+    mtrBotones2=matrizGrafica(mtrBotones2,mtrImagenes2,frameJugador2,f,c,mtrBotones,mtrImagenes,vMenu,lstJugadores,matrizGuardar2,matrizGuardar)
+    mtrBotones=matrizGrafica(mtrBotones,mtrImagenes,frameJugador1,f,c,mtrBotones2,mtrImagenes2,vMenu,lstJugadores,matrizGuardar,matrizGuardar2)
     messagebox.showinfo("Jugador 1","Coloca tus barcos, recuerda que tienes 6 Destructores, 4 Cruceros y 2 Acorazados")
     apagarBotones(mtrBotones2)
     

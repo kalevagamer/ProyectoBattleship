@@ -10,6 +10,8 @@ matrizBotones=[]
 matrizBotones2=[]
 matrizImagenes=[]
 matrizImagenes2=[]
+matrizGuardar=[]
+matrizGuardar2=[]
 lstJugadores=[]
 lstAciertos=[]
 
@@ -25,7 +27,7 @@ def cargarDatos(vtnMenu):
     vtnMenu.wait_window(vtnReanudar)
     desBloquearVentana(vtnMenu)
     vtnMenu.focus_force()
-    juego.empezarJuego(vtnMenu,lstJugadores,matrizBotones,matrizImagenes,matrizBotones2,matrizImagenes2,lstAciertos)
+    juego.empezarJuego(vtnMenu,lstJugadores,matrizBotones,matrizImagenes,matrizBotones2,matrizImagenes2,matrizGuardar,matrizGuardar2,lstAciertos)
 
 def iniciarPartida(vtnMenu):
     bloquearVetana(vtnMenu)
@@ -35,7 +37,7 @@ def iniciarPartida(vtnMenu):
     vtnMenu.wait_window(vtnMatriz)
     desBloquearVentana(vtnMenu)
     vtnMenu.focus_force()
-    juego.crearObjetos(vtnMenu,matriz,lstJugadores,matrizBotones,matrizBotones2,matrizImagenes,matrizImagenes2)
+    juego.crearObjetos(vtnMenu,matriz,lstJugadores,matrizBotones,matrizBotones2,matrizImagenes,matrizImagenes2,matrizGuardar,matrizGuardar2)
 
 
 def main():
@@ -67,8 +69,3 @@ def main():
 
 
 main()
-for e in matrizImagenes:
-    print(e)
-print() 
-for e in matrizImagenes2:
-    print(e)  
