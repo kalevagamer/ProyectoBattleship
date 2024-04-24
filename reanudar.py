@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import json
-def leerDatos(archivo,mtrzImagenes,mtrzImagenes2,lstJugadores,lstAciertos):
+def leerDatos(ven,archivo,mtrzImagenes,mtrzImagenes2,lstJugadores,lstAciertos):
     """
          Lee los datos de una partida guardada desde varios archivos de texto y los carga en las listas correspondientes.
 
@@ -34,23 +34,25 @@ def leerDatos(archivo,mtrzImagenes,mtrzImagenes2,lstJugadores,lstAciertos):
         auxArchivo=f"saves/{str(archivo).strip()}-Ac.txt"
         with open(auxArchivo, 'r') as f:
             lstAciertos=json.load(f)
+        ven.destroy()
     except:
         messagebox.showerror("Error", "El archivo no existe o no se puede abrir.")
 
-def reanudarPartida(matriz,lstJugadores):
+def reanudarPartida(vtnMenu,matrizImagenes,matrizImagenes2,lstJugadores,lstAciertos):
     """
-    Crea una ventana para que el usuario ingrese el nombre de la partida que desea reanudar.
+    Permite al usuario reanudar una partida guardada ingresando el nombre de la partida en una nueva ventana emergente.
 
     Args:
-    matriz : list
-        Matriz de juego que se actualizará con los datos leídos.
-    lstJugadores : list
-        Lista de jugadores que se actualizará con los datos leídos.
-
-    La función configura una interfaz gráfica que incluye un campo de entrada y un botón de confirmación.
-    Al presionar el botón de confirmación, se intentará cargar los datos de la partida especificada.
+        vtnMenu (Tk): Ventana principal del juego.
+        matrizImagenes (list): Matriz de imágenes para el Jugador 1.
+        matrizImagenes2 (list): Matriz de imágenes para el Jugador 2.
+        lstJugadores (list): Lista de jugadores, usada para manejar la información de los jugadores durante la partida.
+        lstAciertos (list): Lista de listas donde se registran los aciertos de cada jugador.
+    Returns:
+        None
     """
-    ven=Tk()
+
+    ven=Toplevel(vtnMenu)
     ven.title("Battelship")
     ven.protocol("WM_DELETE_WINDOW", noCerrar)
     ven.iconbitmap("img/bt.ico")
@@ -70,7 +72,7 @@ def reanudarPartida(matriz,lstJugadores):
     ntrPartida.place(x=155-ntrPartida.winfo_reqwidth()//2,y=30)
     
     #botones
-    btnConfirmar=Button(ven,text="Confirmar",command=lambda:leerDatos(ntrPartida.get(),matriz,lstJugadores))
+    btnConfirmar=Button(ven,text="Confirmar",command=lambda:leerDatos(ven,ntrPartida.get(),matrizImagenes,matrizImagenes2,lstJugadores,lstAciertos))
     btnConfirmar.place(x=155-btnConfirmar.winfo_reqwidth()//2,y=120)
 
 def noCerrar():

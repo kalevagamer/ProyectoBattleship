@@ -131,25 +131,24 @@ def moverBarcos(matrizGuardar,filas,columnas):
                     # Invertir las posiciones de las imágenes
                     matrizGuardar[x][y], matrizGuardar[x][y + 2] = matrizGuardar[x][y + 2], matrizGuardar[x][y]
 
-def terminarPartida(vMenu,aciertos):
+def terminarPartida(vMenu,puntos):
     """
     Determina quien es el ganador o si la partida es un empate
 
     Args:
         vMenu (Tk): La ventana principal del juego que será cerrada al finalizar la partida.
-        aciertos (list): Lista de dos elementos, donde cada sublista contiene los aciertos registrados
-                         por cada jugador. Por ejemplo, aciertos[0] para el Jugador 1 y aciertos[1] para el Jugador 2.
+        puntos (list): Lista de dos elementos, cada sublista tiene los atributos de cada jugador
 
     Returns:
         None: La función muestra cuadros de diálogo para interactuar con el usuario y no retorna ningún valor.
 
     """
     if fase==5:
-        if len(aciertos[0])==len(aciertos[1]):
+        if len(puntos[0][2])==len(puntos[1][2]):
                 messagebox.showinfo("Partida Terminada","se ha declarado empate")
-        elif len(aciertos[0])>len(aciertos[1]):
+        elif len(puntos[0][2])>len(puntos[1][2]):
             messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
-        elif len(aciertos[0])<len(aciertos[1]):
+        elif len(puntos[0][2])<len(puntos[1][2]):
             messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
         vMenu.destroy()
     elif fase==3:
@@ -157,11 +156,11 @@ def terminarPartida(vMenu,aciertos):
     else:
         respuesta=messagebox.askyesno("Partida","¿desean terminar la partida?")
         if respuesta:
-            if len(aciertos[0])==len(aciertos[1]):
+            if len(puntos[0][2])==len(puntos[1][2]):
                 messagebox.showinfo("Partida Terminada","se ha declarado empate")
-            elif len(aciertos[0])>len(aciertos[1]):
+            elif len(puntos[0][2])>len(puntos[1][2]):
                 messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
-            elif len(aciertos[0])<len(aciertos[1]):
+            elif len(puntos[0][2])<len(puntos[1][2]):
                 messagebox.showinfo("Partida Terminada","Gana Jugador 1!")
             vMenu.destroy()
 
@@ -218,7 +217,7 @@ def disparo(vtnMenu,x, y, mtrBotones,matrizGuardar,filas,columnas,aciertos,lstJu
         else:
             if aux==20 or aux2==20:
                 fase=5
-                terminarPartida(vtnMenu,aciertos)
+                terminarPartida(vtnMenu,lstJuga)
             else:
                 moverBarcos(matrizGuardar,filas,columnas)
                 messagebox.showinfo("Atencion!","Los barcos se han movido!")
@@ -273,7 +272,7 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos))
     btnGuardar.place(x=320, y=600)
 
-    btnEmpate=Button(vMenu,text="Terminar Partida",font=("Arial", 12),command=lambda:terminarPartida(vMenu,lstAciertos))
+    btnEmpate=Button(vMenu,text="Terminar Partida",font=("Arial", 12),command=lambda:terminarPartida(vMenu,lstJugadores))
     btnEmpate.place(x=500, y=600)
 
     f=len(mtrImagenes)
