@@ -23,7 +23,7 @@ def desBloquearVentana(vtn):
 
 def cargarDatos(vtnMenu):
     bloquearVetana(vtnMenu)
-    vtnReanudar=reanudar.reanudarPartida(vtnMenu,matrizImagenes,matrizImagenes2,lstJugadores,lstAciertos)
+    vtnReanudar=reanudar.reanudarPartida(vtnMenu,matrizGuardar,matrizGuardar2,lstJugadores,lstAciertos)
     vtnMenu.wait_window(vtnReanudar)
     desBloquearVentana(vtnMenu)
     vtnMenu.focus_force()

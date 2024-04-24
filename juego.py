@@ -31,10 +31,13 @@ def guardarP(vMenu,lstJugadores,mtrImagenes,mtrImagenes2,lstAciertos,lstTodasIma
     vMenu.wait_window(vntGuardar)
     vMenu.attributes("-disabled", False)
 
-def empate():
-    pass
+def empate(vMenu):
+    respuesta=messagebox.askyesno("Empate","¿desean declarar empate?")
+    if respuesta:
+        messagebox.showinfo("Partida Terminada","se ha declarado empate")
+        vMenu.destroy()
 
-def disparo(e, i, mtrBotones,mtrImagenes,filas,columnas,mtrOtrosBotones,mtrOtrasImagenes):
+def disparo(e, i, mtrBotones,matrizGuardar,filas,columnas):
     print("hola")
 
 def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagenes2,matrizGuardar,matrizGuardar2,lstAciertos=[]):
@@ -64,7 +67,7 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     btnGuardar=Button(vMenu,text="Guardar Partida",font=("Arial", 12),command=lambda:guardarP(vMenu,lstJugadores,matrizGuardar,matrizGuardar2,lstAciertos,lstTodasImagenes))
     btnGuardar.place(x=320, y=600)
 
-    btnEmpate=Button(vMenu,text="Declarar Empate",font=("Arial", 12),command=lambda:empate())
+    btnEmpate=Button(vMenu,text="Declarar Empate",font=("Arial", 12),command=lambda:empate(vMenu))
     btnEmpate.place(x=500, y=600)
 
     f=len(mtrImagenes)
@@ -81,6 +84,8 @@ def empezarJuego(vMenu,lstJugadores,mtrBotones,mtrImagenes,mtrBotones2,mtrImagen
     # if lstAciertos:
     #     mtrImagenes=orientarReanudar(lstTodasImagenes,mtrImagenes)
     #     mtrImagenes2=orientarReanudar(lstTodasImagenes,mtrImagenes2)
+
+    messagebox.showinfo("Jugador 1", "Tu turno!")
 
    
 
@@ -315,8 +320,7 @@ def matrizGrafica(mtrBtn,mtrImagenes,frame,filas,columnas,mtrOtrosBotones,mtrOtr
                 button.config(command=lambda e=e, i=i: colocarBarcos(e, i, mtrBtn,mtrImagenes,filas,
                                                                  columnas,mtrOtrosBotones,mtrOtrasImagenes,vtnMenu,lstJugadores,matrizGuardar,matrizGuardar2))
             elif fase==2:
-                button.config(image=mtrImagenes[e][i],command=lambda e=e, i=i:disparo(e, i, mtrBtn,mtrImagenes,filas,
-                                                                 columnas,mtrOtrosBotones,mtrOtrasImagenes,matrizGuardar,matrizGuardar2))
+                button.config(image=mtrImagenes[e][i],command=lambda e=e, i=i:disparo(e, i, mtrBtn,matrizGuardar,filas,columnas))
     return mtrBtn
     
 
